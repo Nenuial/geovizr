@@ -1,0 +1,82 @@
+\documentclass[11pt,a4paper,addpoints,$params.lang$,
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$$if(subclass)$,$subclass$$endif$]{exam}
+
+\def\globalpath{$globalpath$}
+\input{$globalpath$/global.tex}
+
+% Setup page
+\usepackage[bindingoffset=0in,left=1.8cm,right=1.8cm,
+top=2.5cm,bottom=2cm,headsep=.8cm]{geometry}
+
+% Setup header and footer
+\pagestyle{headandfoot}
+\header{}{}{\footnotesize \trad{Name}{Nom}:~\fillin[][4.5cm]}
+\runningheadrule
+\runningheader{\includegraphics[width=1.8cm]{$globalpath$/images/LDDR}}
+{\footnotesize \trad{Geography $heading$}{G\'{e}ographie $heading$}}
+{\footnotesize \trad{Name}{Nom}:~\hspace{4.5cm}}
+\footrule
+\footer{\footnotesize $sign$/\the\year}
+{\footnotesize }
+{\footnotesize \thepage/\numpages}
+
+% Setup points
+\pointsinleftmargin
+\pointpoints{pt}{pts}
+\marginpointname{ \points}
+\pointformat{\footnotesize\boldmath\themarginpoints}
+\boxedpoints
+\usehorizontalhalf
+
+% Setup test date variable
+\DTMnewdatestyle{frenchdate}{%
+	\renewcommand{\DTMdisplaydate}[4]{%
+		\DTMtwodigits{##3} \DTMmonthname{##2}}%
+	\renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+\DTMnewdatestyle{englishdate}{%
+	\renewcommand{\DTMdisplaydate}[4]{%
+		\DTMmonthname{##2}, \DTMtwodigits{##3}}%
+	\renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+\IfLanguageName{english}{\DTMsetdatestyle{englishdate}}{\DTMsetdatestyle{frenchdate}}
+\DTMsavedate{testdate}{$test.date$}
+
+\begin{document}
+
+% Test head
+\noindent
+\fbox{\begin{minipage}[l]{.32\textwidth}%
+\noindent
+\includegraphics[width=3cm]{$globalpath$/images/LDDR}
+\end{minipage}
+\hfill
+\begin{minipage}[r]{.33\textwidth}%
+\begin{center}
+{\large \bfseries \par
+\Large \trad{Geography $heading$}{G\'{e}ographie $heading$} \\[2pt]
+\small \trad{Test}{TE} -- $test.title$ \par}
+\end{center}
+\end{minipage}
+\begin{minipage}[l]{.32\textwidth}%
+\begin{flushright}
+\noindent%
+{\bfseries $test.class$}\\
+{\footnotesize \DTMusedate{testdate}}
+\end{flushright}
+\end{minipage}}
+
+\vspace{0.3cm}\par\renewcommand\ULthickness{2pt}\setlength\ULdepth{1.5ex}
+\uline{\IfLanguageName{english}{Grade}{Note}:   \hfill \hfill        Points:\mbox{\hspace{1.2cm}} /\pointsinrange{geotest}}
+
+\vspace{0.2cm}
+\renewcommand\ULthickness{.5pt}\setlength\ULdepth{.5ex}
+
+% Test document
+\begingradingrange{geotest}
+$body$
+\endgradingrange{geotest}
+
+\end{document}

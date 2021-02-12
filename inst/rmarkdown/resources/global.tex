@@ -1,0 +1,286 @@
+\usepackage{babel}
+\usepackage[calc,useregional]{datetime2}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{caption}
+\usepackage{datatool}
+\usepackage{csquotes}
+    \MakeOuterQuote{"}
+    \MakeAutoQuote{«}{»}
+\usepackage{tabto}
+\usepackage{longtable,ltxtable}
+\usepackage{array,multirow,multicol,adjustbox,booktabs}
+\usepackage{makecell}
+\usepackage{xcolor,colortbl}
+\usepackage{pifont}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\usetikzlibrary{bending}
+\usetikzlibrary{angles,quotes}
+\usepackage[most]{tcolorbox}
+\usepackage{mdframed}
+\usepackage{graphicx,lastpage}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{pdflscape}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage{iflang}
+\usepackage{siunitx}
+\usepackage{printlen}
+\usepackage{upgreek}
+\usepackage[normalem]{ulem}
+\usepackage[switch,modulo]{lineno}
+\usepackage{tabularx}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{tabu}
+\usepackage{fp}
+\usepackage{cleveref}
+\crefname{figure}{figure}{figures}
+\crefname{question}{question}{questions}
+\usepackage{wrapfig}
+\usepackage{endnotes}
+\usepackage{amsthm}
+\usepackage{layouts}
+\usepackage[space]{grffile}
+
+% Setup font
+\setmainfont[Ligatures=TeX]{Fira Sans}[
+  UprightFont = * Light,
+  BoldFont = * Regular
+]
+
+% Create float box environment
+\usepackage{float}
+\floatstyle{plain}
+\newfloat{flbox}{thb}{flb}
+\floatname{flbox}{}
+
+% Define different parameters…
+\IfLanguageName{french}{\frenchbsetup{StandardLayout=true}}{}
+\def\labelitemi{---}
+\def\labelitemii{--}
+\setenumerate{itemsep=0cm}
+\setlist{itemsep=0cm}
+
+\setlength{\parskip}{.5em}
+\setlength{\parindent}{0cm}
+
+\renewcommand{\dbltopfraction}{0.9}	% fit big float above 2-col. text
+\renewcommand{\textfraction}{0.07}	% allow minimal text w. figs
+% Parameters for FLOAT pages (not text pages):
+\renewcommand{\floatpagefraction}{0.7}	% require fuller float pages
+% N.B.: floatpagefraction MUST be less than topfraction !!
+\renewcommand{\dblfloatpagefraction}{0.7}
+
+% Define environement boxes
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=gray,
+backgroundcolor=black!5,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=2pt,
+innertopmargin=5pt
+innerbottommargin=5pt]{cBox}
+
+\newmdenv[skipabove=7pt,
+skipbelow=3pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=gray,
+backgroundcolor=black!5,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=2pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=1pt,
+innerbottommargin=5pt]{dBox}
+
+% Setup solution boxes
+\BeforeBeginEnvironment{solutionorlines}{\par\nopagebreak\minipage{\linewidth}}
+\AfterEndEnvironment{solutionorlines}{\endminipage}
+
+% Define personal commands
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\newcommand*\rot{\rotatebox{90}}
+\newcommand*\OK{\ding{51}}
+
+\makeatletter
+\newcommand*{\romannum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\def\nobreakpar{\par\nobreak\@afterheading}
+\def\nobreakline{\par\nobreak\vspace{-\parskip}\@afterheading\noindent}
+\makeatother
+
+\newcommand\measurepage{\dimexpr\pagegoal-\pagetotal-\baselineskip\relax}
+
+\newcommand{\trad}[2]{\IfLanguageName{english}{#1}{#2}}
+
+\newcommand{\AlArticle}[2]{%
+	\tcbsidebyside[title=Article,
+			      sidebyside adapt=left,
+	          bicolor,colback=white,colbacklower=blue!5,
+	          fonttitle=\bfseries,drop lifted shadow,
+	]{%
+		\includegraphics[width=1.2cm]{\globalpath images/journal}
+	 }{%
+	  	#1\vspace{.2cm}
+
+	  	\hfill\emph{\trad{Written by}{R\'{e}dig\'{e} par}} #2
+	}
+}
+
+\newcommand{\AlPress}[2]{%
+	\tcbsidebyside[title=Article,
+			  sidebyside adapt=left,
+	          bicolor,colback=white,colbacklower=blue!5,
+	          fonttitle=\bfseries,drop lifted shadow,
+	]{%
+		\includegraphics[width=1.5cm]{\globalpath images/newspaper}
+	 }{%
+	  	\emph{\trad{Published by}{Publié par}} #1\vspace{.2cm}
+
+	  	\hfill\emph{\trad{Written by}{R\'{e}dig\'{e} par}} #2
+	}
+}
+
+\newcommand{\AlInterview}[3]{%
+	\tcbsidebyside[title=Interview \trad{of}{de} \emph{#1},
+			  sidebyside adapt=left,
+	          bicolor,colback=white,colbacklower=blue!5,
+	          fonttitle=\bfseries,drop lifted shadow,
+	]{%
+		\includegraphics[width=1.5cm]{\globalpath images/newspaper}
+	 }{%
+	  	\emph{\trad{Published by}{Publié par}} #2\vspace{.2cm}
+
+	  	\hfill\emph{\trad{Interviewed by}{Men\'{e} par}} #3
+	}
+}
+
+\newcommand{\AlBook}[2]{%
+	\tcbsidebyside[title=\trad{Book}{Ouvrage},
+			  sidebyside adapt=left,
+	          bicolor,colback=white,colbacklower=red!5,
+	          fonttitle=\bfseries,drop lifted shadow,
+	]{%
+		\includegraphics[width=1.2cm]{\globalpath images/book}
+	 }{%
+	  	\emph{\trad{Excerpt from}{Extrait de}} #1\vspace{.2cm}
+
+	  	\hfill\emph{De} #2
+	}
+}
+
+\newcommand{\AlPage}[3][0]{%
+	\tcbsidebyside[title=\trad{Web article}{Article web}\hfill \emph{\trad{Last visited}{Consult\'{e} le}} \DTMdate{#3},
+			  sidebyside adapt=left,
+	          bicolor,colback=white,colbacklower=green!5,
+	          fonttitle=\bfseries,drop lifted shadow,
+	]{%
+		\includegraphics[width=1.2cm]{\globalpath images/web}
+	 }{%
+	  	\emph{\trad{From}{Tiré de}} #2\vspace{.2cm}
+
+	  	{ \ifthenelse {\equal{#1}{0}}
+       		{}
+       		{\hfill\emph{\trad{By}{Par}} #1}
+   		}
+	}
+}
+
+% Define paralists
+\newlist{paralist}{enumerate}{1}
+\setlist[paralist,1]{leftmargin=0cm,itemindent=*,labelsep=0.05cm,label=\textsuperscript{\arabic*},itemsep=0em}
+\counterwithin{paralisti}{subsubsection}
+
+% Define quote environement
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+  \hbox{}\nobreak\hfil --- #1%
+  \parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+  {\savebox\mybox{#1}\begin{quote}\itshape}
+  {\signed{\usebox\mybox}\end{quote}}
+
+% Define Definition and Read also environment
+\newtheoremstyle{thrm}% name of the style to be used
+  {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+  {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+  {\itshape}% name of font to use in the body of the theorem
+  {0pt}% measure of space to indent
+  {\bfseries}% name of head font
+  {}% punctuation between head and body
+  {\newline}% space after theorem head; " " = normal interword space
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ -- #3}}
+
+\theoremstyle{thrm}
+\newtheorem{definitionT}{\IfLanguageName{english}{Definition}{Définition}}[section]
+\newtheorem{readT}{\IfLanguageName{english}{Read}{Lecture}}[section]
+
+\newenvironment{readalso}{\begin{cBox}\begin{readT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{readT}\end{cBox}}
+\newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
+
+% Code environment
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}

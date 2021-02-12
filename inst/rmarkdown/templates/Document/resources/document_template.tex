@@ -1,0 +1,47 @@
+\documentclass[11pt,a4paper,$params.lang$,
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$$if(subclass)$,$subclass$$endif$]{exam}
+
+\def\globalpath{$globalpath$}
+\input{$globalpath$/global.tex}
+
+% Setup page
+\usepackage[bindingoffset=0in,left=1.8cm,right=1.8cm,
+top=2.5cm,bottom=2cm,headsep=.8cm]{geometry}
+
+% Setup header and footer
+\pagestyle{headandfoot}
+\headrule
+\header{\includegraphics[width=1.8cm]{$globalpath$/images/LDDR}}
+{\footnotesize \IfLanguageName{english}{Geography $heading$}{G\'{e}ographie $heading$}}
+{\footnotesize $sigsec$}
+\footrule
+\footer{\footnotesize $sign$/\the\year}
+{}
+{\footnotesize \thepage/\numpages}
+
+\begin{document}
+
+% Title section
+$if(title)$
+\begin{center}
+\Huge \textsc{\textbf{$title$}} \\
+$if(subtitle)$\large\textbf{$subtitle$}$endif$
+\end{center}
+$endif$
+
+% Reference if defined
+$if(reference.book)$\AlBook{$reference.book$}{$reference.author$}$endif$
+$if(reference.page)$\AlPage$if(reference.author)$[$reference.author$]$endif${$reference.page$}{$reference.date$}$endif$
+$if(reference.press)$\AlPress{$reference.press$}{$reference.author$}$endif$
+$if(reference.article)$\AlArticle{$reference.article$}{$reference.author$}$endif$
+$if(reference.interview)$\AlInterview{$reference.interview$}{$reference.author$}{$reference.interviewer$}$endif$
+$if(reference.author)$\vspace{.5cm}$elseif(reference.page)$\vspace{.5cm}$endif$
+
+% Main document
+$if(params.linenumbers)$\begin{linenumbers}$endif$
+$body$
+$if(params.linenumbers)$\end{linenumbers}$endif$
+
+\end{document}
