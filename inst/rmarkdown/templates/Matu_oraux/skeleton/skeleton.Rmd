@@ -1,0 +1,16 @@
+---
+params:
+  session: "Session hiver 2021"
+knit: geovizr::knit_quiet
+output: geovizr::gvz_matu_oraux
+---
+
+```{r setup, include=FALSE}
+library(geovizr)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+
+
+```
+
+

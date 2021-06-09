@@ -1,0 +1,107 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\documentclass[11pt,a4paper,fleqn,$language$]{book} % Default font size and left-justified equations
+
+%----------------------------------------------------------------------------------------
+\def\themecolor{$main_color$}
+\input{$templatepath$/structure.tex}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY FILES
+%----------------------------------------------------------------------------------------
+% Add all BibTeX bibliography files
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT
+%----------------------------------------------------------------------------------------
+\title{$title$}
+\author{$author$}
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%	LAYOUT SETTINGS
+%----------------------------------------------------------------------------------------
+
+\partbackgroundfalse         % Background for parts disabled
+$if(latex_book.chapter_image)$$else$
+\usechapterimagefalse        % Images for chapters disabled
+$endif$
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\pagenumbering{alph}
+\setcounter{page}{1}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+
+\node[anchor=north west,inner sep=1.5 cm] at (current page.north west) {\includegraphics[width=5cm]{$templatepath$/images/LDDR_cover_logo.pdf}};
+
+\node[anchor=south east, inner sep=0pt] at (current page.south east) {\includegraphics[height=20cm]{$cover_image$}};
+
+\fill[fill=ddrblue] ([shift={(0,-4)}] current page.west) -- ([shift={(0,6)}] current page.west) -- ([shift={(0,0)}] current page.north east) node [midway] (midpoint) {} -- ([shift={(0,-10)}] current page.north east);
+
+\node[white, rotate = 22.85] at ([shift={(0,-5)}] midpoint) {\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering $title/uppercase$\\[20pt] % Book title
+	{\huge $subtitle$}\\[20pt]}};
+
+\end{tikzpicture}
+\vfill
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\frontmatter
+$if(latex_book.toc_image)$
+\chapterimage{$latex_book.toc_image$} % Table of contents heading image
+$endif$
+\pagestyle{empty} % No headers
+\tableofcontents % Print the table of contents itself
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+\pagestyle{fancy} % Print headers again
+
+%----------------------------------------------------------------------------------------
+%	CONTENT
+%----------------------------------------------------------------------------------------
+
+\mainmatter
+$body$
+
+%----------------------------------------------------------------------------------------
+%	SOURCES
+%----------------------------------------------------------------------------------------
+$if(latex_book.bibliography)$
+\cleardoublepage
+\phantomsection
+$if(latex_book.bib_image)$
+\chapterimage{$latex_book.bib_image$}
+$endif$
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{maincolor}{\trad{References}{Références}}}
+\chapter*{\trad{References}{Références}}
+\printbibliography[heading=bibempty]
+$endif$
+
+%----------------------------------------------------------------------------------------
+%	INDEX
+%----------------------------------------------------------------------------------------
+$if(latex_book.index)$
+\cleardoublepage
+\phantomsection
+$if(latex_book.index_image)$
+\chapterimage{$latex_book.index_image$}
+$endif$
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{maincolor}{Index}}
+\printindex
+$endif$
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

@@ -1,0 +1,9 @@
+Add an onInstall to the package to add tex package that don't "install" automatically :
+
+babel-english
+babel-french
+
+datetime2-english
+datetime2-french
+
+pdfcrop

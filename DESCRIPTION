@@ -21,4 +21,9 @@ Imports:
     tidyr,
     dplyr,
     janitor,
-    purrr
+    purrr,
+    tinytex,
+    xfun,
+    ggeo,
+    downlit,
+    tufte

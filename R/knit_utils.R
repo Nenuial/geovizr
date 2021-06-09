@@ -1,3 +1,23 @@
+#' Global chunk options
+#'
+#' @export
+gvz_global_opts_chunk <- function() {
+  knitr::opts_chunk$set(warning = FALSE)
+  knitr::opts_chunk$set(message = FALSE)
+  knitr::opts_chunk$set(fig.retina = 2)
+  knitr::opts_chunk$set(dev.args = c(bg = 'transparent'))
+
+  chunkhooks::hook_figure_unit(unit = "cm")
+}
+
+#' Document ggeo theme
+#'
+#' @return A ggplot2 theme
+#' @export
+gvz_doc_theme <- function() {
+  ggeo::ggeotheme("doc", "main_latex", "plot_latex")
+}
+
 #' Custom Knit function for RStudio
 #'
 #' @export
@@ -131,4 +151,27 @@ latex_percent_size <- function(x, which = c("width", "height"),
   x[i] <- paste0(formatC(xi / 100, decimal.mark = "."),
                 if (which == "width") width else "\\textheight")
   x
+}
+
+#' Get the path for the tikz template stub
+#'
+#' @return A full path to the tikz template stub
+#' @export
+tikz <- function() {
+  gvz_file("rstudio/templates/project/resources/tex/tikz.tex")
+}
+
+#' Set chapter image in for LaTeX book
+#'
+#' @param path The path to the image to use
+#'
+#' @export
+chapter_image <- function(path) {
+  if(!knitr::is_latex_output()) return()
+
+  knitr::raw_latex(paste0(
+    r"(\chapterimage{)",
+    path,
+    "}"
+  ))
 }

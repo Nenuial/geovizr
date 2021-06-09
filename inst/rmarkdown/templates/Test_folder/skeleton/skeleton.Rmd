@@ -1,0 +1,19 @@
+---
+test:
+  title: "Titre du test"
+  class: "Classe"
+  date: "YYYY-MM-DD"
+sign: "PBd"
+params:
+  lang: french
+  linenumbers: true
+knit: geovizr::knit_quiet
+output: geovizr::gvz_test
+---
+
+```{r setup, include=FALSE}
+library(geovizr)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+

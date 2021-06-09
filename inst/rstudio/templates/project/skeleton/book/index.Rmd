@@ -1,0 +1,36 @@
+--- 
+title: "Title"
+subtitle: "Subtitle"
+author: "Pascal Burkhard"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+cover_image: "pictures/cover.png"
+
+documentclass: book
+#bibliography: [bibliography/main.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Description"
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  results = 'asis'
+)
+options(tinytex.engine = 'xelatex')
+options(bookdown.post.latex = function(x) {
+    from <- grep("usepackage\\{amsthm\\}", x)
+    to <- grep("newtheorem\\*\\{solution", x)
+    x <- x[-c(from:to)]
+  })
+```
+
+`r if (knitr::is_latex_output()) '<!--'`
+
+# Welcome {.unnumbered}
+
+<img src="pictures/web_cover.png" width="200" height="282" align="right" alt="" class="cover" /> Welcome text that only dispays on the web part along with a cover picture (needs to be created).
+
+`r if (knitr::is_latex_output()) '-->'`

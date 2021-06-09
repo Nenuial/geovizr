@@ -2,21 +2,11 @@
 #' @export
 magrittr::`%>%`
 
-.onLoad = function(lib, pkg) {
-  # Load engines ------------------------------------------------------------
-  # General purpose
-  knitr::knit_engines$set(latex = eng_latex_raw)
-  # Formatting
-  knitr::knit_engines$set(center = eng_center_text)
-  # Boxes
-  knitr::knit_engines$set(cbox = eng_classic_box)
-  knitr::knit_engines$set(ref = eng_document_ref)
-  knitr::knit_engines$set(wrap = eng_wrap_figure)
-  knitr::knit_engines$set(img = eng_image_legend)
-  # Examdoc
-  knitr::knit_engines$set(exam = eng_exam_questions)
-  # Lists
-  knitr::knit_engines$set(legal = eng_legal_list)
+#' An internal system.file for the geovizr package
+#'
+#' @keywords internal
+gvz_file = function(...) {
+  system.file(..., package = 'geovizr', mustWork = TRUE)
 }
 
 #' Install fonts

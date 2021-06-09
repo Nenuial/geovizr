@@ -1,0 +1,11 @@
+\clearpage
+
+\matuhead
+
+\matusession{`r params$session`}
+
+\large\textbf{Candidat·e `r data[["ID"]]`} -- `r data[["Name"]]`\vspace{.5cm}
+
+\large\textbf{Thème:} `r data[["Subject"]]`\vspace{.5cm}
+
+`r data[["Question"]]`
