@@ -26,4 +26,6 @@ Imports:
     xfun,
     ggeo,
     downlit,
-    tufte
+    tufte,
+    magick,
+    pdftools

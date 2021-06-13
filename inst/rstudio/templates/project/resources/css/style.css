@@ -8,9 +8,21 @@ blockquote > footer {
   text-align: right;
 }
 
+div.csl-entry {
+  text-indent: -36px;
+  padding-left: 36px;
+}
+
 div.definition {
   background-color: #f3f5f7;
   border-left: 2px solid #0F2D61;
+  padding: 2px 4px 2px 10px;
+  margin-bottom: 16px;
+}
+
+div.proposition {
+  background-color: #f3f5f7;
+  border: 2px solid #0F2D61;
   padding: 2px 4px 2px 10px;
   margin-bottom: 16px;
 }
@@ -25,6 +37,11 @@ div.example::after {
 }
 
 span.definition > strong {
+  display: inline-block;
+  width: 100%;
+}
+
+span.proposition > strong {
   display: inline-block;
   width: 100%;
 }

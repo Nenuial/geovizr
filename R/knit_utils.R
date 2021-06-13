@@ -7,6 +7,27 @@ gvz_global_opts_chunk <- function() {
   knitr::opts_chunk$set(fig.retina = 2)
   knitr::opts_chunk$set(dev.args = c(bg = 'transparent'))
 
+  knitr::opts_template$set(
+    fig = list(echo = FALSE, out.width = '100%'),
+    geo.graph = list(
+      echo = FALSE, message = FALSE, out.width = '100%',
+      fig.retina = 2,
+      fig.ext = if (knitr:::is_latex_output()) 'pdf' else 'png',
+      dev = if (knitr:::is_latex_output()) 'cairo_pdf' else 'png'
+    ),
+    geo.tikz = list(
+      echo = FALSE, out.width='100%',
+      fig.retina = 2,
+      fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png',
+      engine='tikz',
+      engine.opts = list(
+        template = geovizr::tikz(),
+        classoption = geotools::gtl_opt_long_language(),
+        extra.preamble = paste0(r"[\graphicspath{{]", geovizr::gvz_book_resources(), "/}}")
+      )
+    )
+  )
+
   chunkhooks::hook_figure_unit(unit = "cm")
 }
 
@@ -16,6 +37,14 @@ gvz_global_opts_chunk <- function() {
 #' @export
 gvz_doc_theme <- function() {
   ggeo::ggeotheme("doc", "main_latex", "plot_latex")
+}
+
+#' Get the path for the book resources
+#'
+#' @return A full path with the book resources, defaults to project root
+#' @export
+gvz_book_resources <- function() {
+  here::here(geotools::gtl_options("book_resources"))
 }
 
 #' Custom Knit function for RStudio
