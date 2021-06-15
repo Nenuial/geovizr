@@ -1,0 +1,12 @@
+\begin{planet}
+	\begin{tabularx}{\linewidth}{p{3cm} >{\bfseries}p{4cm} X}
+		\multirow{4}{\linewidth}{\includegraphics[width=2.8cm]{`r geovizr::gvz_file(paste0("resources/images/cosmo_solar_system/"))``r object$english`}} & \multicolumn{2}{X}{\bfseries\Large `r geotools::translate_enfr(object$english, object$french)`}\\
+		& Type: & `r geotools::translate_enfr(object$type_en, object$type_fr)`\\
+		`r if (is.na(object$distance)) "%"` & \trad{Distance to Sun:}{Distance au Soleil:} & `r object$distance` \trad{AU}{UA}\\
+		& \trad{Mass:}{Masse:} & `r object$mass` kg\\
+		& \trad{Equatorial radius:}{Rayon équatorial:} & `r object$radius` km\\
+		& \trad{Density:}{Densité:} & `r object$density` g/cm\textsuperscript{3}\\
+		& \trad{Rotation period:}{Période de rotation:} & `r object$rotation`\\
+		`r if (is.na(object$revolution)) "%"`& \trad{Revolution period:}{Période de révolution:} & `r object$revolution` \trad{years}{ans}\\
+	\end{tabularx}
+\end{planet}

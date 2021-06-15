@@ -2,9 +2,11 @@
 #' @export
 magrittr::`%>%`
 
-#' An internal system.file for the geovizr package
+#' A shortcut function for the system.file to the geovizr package
 #'
-#' @keywords internal
+#' @return A path
+#'
+#' @export
 gvz_file = function(...) {
   system.file(..., package = 'geovizr', mustWork = TRUE)
 }

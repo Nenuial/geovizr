@@ -25,6 +25,10 @@ gvz_global_opts_chunk <- function() {
         classoption = geotools::gtl_opt_long_language(),
         extra.preamble = paste0(r"[\graphicspath{{]", geovizr::gvz_book_resources(), "/}}")
       )
+    ),
+    geo.cosmo.box = list(
+      echo = FALSE,
+      results = 'asis'
     )
   )
 

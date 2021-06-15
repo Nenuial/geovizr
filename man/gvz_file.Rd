@@ -2,11 +2,13 @@
 % Please edit documentation in R/utils.R
 \name{gvz_file}
 \alias{gvz_file}
-\title{An internal system.file for the geovizr package}
+\title{A shortcut function for the system.file to the geovizr package}
 \usage{
 gvz_file(...)
 }
-\description{
-An internal system.file for the geovizr package
+\value{
+A path
 }
-\keyword{internal}
+\description{
+A shortcut function for the system.file to the geovizr package
+}
