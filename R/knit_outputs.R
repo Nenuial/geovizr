@@ -110,7 +110,6 @@ gvz_render_pdf_book <- function(..., template_path, metadata) {
 #' Generate pandoc metadata
 #'
 #' @param path Path of template files
-#' @param knit_key Boolean: knit key file?
 #'
 #' @return A vector with pandoc metadata arguments
 #' @keywords internal
