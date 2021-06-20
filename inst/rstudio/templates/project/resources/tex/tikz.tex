@@ -4,9 +4,22 @@
 \usepackage{babel}
 \usepackage{tikz}
 \usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Fira Sans}[
+  UprightFont = * Light,
+  ItalicFont = * Light Italic,
+  BoldFont = * Regular,
+  BoldItalicFont = * Italic
+]
+\setsansfont[Ligatures=TeX]{Fira Sans}[
+  UprightFont = * Light,
+  ItalicFont = * Light Italic,
+  BoldFont = * Regular,
+  BoldItalicFont = * Italic
+]
+\usepackage[mathrm=sym]{unicode-math}
+\setmathfont{Fira Math Light}
 \usepackage[calc,useregional]{datetime2}
 \usepackage{iflang}
-\usepackage{fourier-otf}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{pgfplotstable}
@@ -16,10 +29,6 @@
 \sisetup{detect-all}
 \usepackage{import}
 \usepackage{varwidth}
-\setmainfont[Ligatures=TeX]{Fira Sans}[
-  UprightFont = * Light,
-  BoldFont = * Regular
-]
 \usetikzlibrary{matrix}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{arrows.meta,arrows}
