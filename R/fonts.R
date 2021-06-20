@@ -26,9 +26,12 @@ gvz_install_fonts <- function() {
 #' @return Move fonts to MacOS font folder
 #' @export
 gvz_install_fonts_macos <- function() {
-  fs::file_copy(
-    path = fs::dir_ls(path = gvz_file("fonts/")),
-    new_path = "~/Library/Fonts/",
-    overwrite = TRUE
-  )
+  fs::dir_ls(path = gvz_file("fonts/")) |>
+    purrr::walk(
+      .f = ~fs::file_copy(
+        path = .x,
+        new_path = "~/Library/Fonts/",
+        overwrite = TRUE
+      )
+    )
 }
