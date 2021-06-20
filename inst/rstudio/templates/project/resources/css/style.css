@@ -38,6 +38,10 @@ div.proposition {
   margin-bottom: 16px;
 }
 
+div.proposition img {
+  max-width: 100%;
+}
+
 div.example {
   margin-bottom: 16px;
 }
