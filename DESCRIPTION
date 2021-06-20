@@ -28,4 +28,5 @@ Imports:
     downlit,
     tufte,
     magick,
-    pdftools
+    pdftools,
+    kableExtra
