@@ -8,8 +8,6 @@ gvz_metadata(path)
 }
 \arguments{
 \item{path}{Path of template files}
-
-\item{knit_key}{Boolean: knit key file?}
 }
 \value{
 A vector with pandoc metadata arguments
