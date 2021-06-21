@@ -23,14 +23,19 @@ gvz_install_fonts <- function() {
 
 #' Install fonts on MacOS
 #'
+#' @param system_wide Install the fonts for all users?
+#'
 #' @return Move fonts to MacOS font folder
 #' @export
-gvz_install_fonts_macos <- function() {
+gvz_install_fonts_macos <- function(system_wide = FALSE) {
+  new_font_path <- "~/Library/Fonts/"
+  if (system_wide) new_font_path <- "/Library/Fonts/"
+
   fs::dir_ls(path = gvz_file("fonts/")) |>
     purrr::walk(
       .f = ~fs::file_copy(
         path = .x,
-        new_path = "~/Library/Fonts/",
+        new_path = new_font_path,
         overwrite = TRUE
       )
     )

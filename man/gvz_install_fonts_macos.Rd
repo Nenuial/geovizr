@@ -4,7 +4,10 @@
 \alias{gvz_install_fonts_macos}
 \title{Install fonts on MacOS}
 \usage{
-gvz_install_fonts_macos()
+gvz_install_fonts_macos(system_wide = FALSE)
+}
+\arguments{
+\item{system_wide}{Install the fonts for all users?}
 }
 \value{
 Move fonts to MacOS font folder
