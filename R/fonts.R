@@ -35,3 +35,27 @@ gvz_install_fonts_macos <- function() {
       )
     )
 }
+
+#' Install fonts on Linux
+#'
+#' @return Move fonts to Linux font folders
+#' @export
+gvz_install_fonts_linux <- function() {
+  fs::dir_ls(path = gvz_file("fonts/")) |>
+    purrr::walk(
+      .f = ~fs::file_copy(
+        path = .x,
+        new_path = "~/.local/share/fonts/",
+        overwrite = TRUE
+      )
+    )
+
+  fs::dir_ls(path = gvz_file("fonts/")) |>
+    purrr::walk(
+      .f = ~fs::file_copy(
+        path = .x,
+        new_path = "~/.local/share/fonts/",
+        overwrite = TRUE
+      )
+    )
+}
