@@ -148,24 +148,27 @@
 %\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
 
 \usepackage[mathrm=sym]{unicode-math}
-\setmathfont{FiraMath-Light}
+\setmathfont{FiraMath-Light}[
+  Path=\string~/Library/Fonts/,
+  Extension = .otf
+]
 
 \usepackage{microtype} % Slightly tweak font spacing for aesthetics
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage{fontspec}
 % Setup font
-\setmainfont[Ligatures=TeX]{FiraSans}[
-  UprightFont = *-Light,
-  ItalicFont = *-LightItalic,
-  BoldFont = *-Regular,
-  BoldItalicFont = *-Italic
+\setmainfont[Ligatures=TeX]{Fira Sans}[
+  UprightFont = * Light,
+  ItalicFont = * Light Italic,
+  BoldFont = * Regular,
+  BoldItalicFont = * Italic
 ]
 
-\setsansfont[Ligatures=TeX]{FiraSans}[
-  UprightFont = *-Light,
-  ItalicFont = *-LightItalic,
-  BoldFont = *-Regular,
-  BoldItalicFont = *-Italic
+\setsansfont[Ligatures=TeX]{Fira Sans}[
+  UprightFont = * Light,
+  ItalicFont = * Light Italic,
+  BoldFont = * Regular,
+  BoldItalicFont = * Italic
 ]
 
 \usepackage{textcomp} % Allows for direct degree symbols

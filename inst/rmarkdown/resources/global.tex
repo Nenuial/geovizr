@@ -57,22 +57,25 @@
 \usepackage[space]{grffile}
 
 % Setup font
-\setmainfont[Ligatures=TeX]{FiraSans}[
-  UprightFont = *-Light,
-  ItalicFont = *-LightItalic,
-  BoldFont = *-Regular,
-  BoldItalicFont = *-Italic
+\setmainfont[Ligatures=TeX]{Fira Sans}[
+  UprightFont = * Light,
+  ItalicFont = * Light Italic,
+  BoldFont = * Regular,
+  BoldItalicFont = * Italic
 ]
 
-\setsansfont[Ligatures=TeX]{FiraSans}[
-  UprightFont = *-Light,
-  ItalicFont = *-LightItalic,
-  BoldFont = *-Regular,
-  BoldItalicFont = *-Italic
+\setsansfont[Ligatures=TeX]{Fira Sans}[
+  UprightFont = * Light,
+  ItalicFont = * Light Italic,
+  BoldFont = * Regular,
+  BoldItalicFont = * Italic
 ]
 
 \usepackage[mathrm=sym]{unicode-math}
-\setmathfont{FiraMath-Light}
+\setmathfont{FiraMath-Light}[
+  Path=\string~/Library/Fonts/,
+  Extension = .otf
+]
 
 % Create float box environment
 \usepackage{float}
