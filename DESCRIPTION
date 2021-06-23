@@ -30,4 +30,5 @@ Imports:
     magick,
     pdftools,
     kableExtra,
-    gt
+    gt,
+    ragg
