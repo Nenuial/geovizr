@@ -31,4 +31,5 @@ Imports:
     pdftools,
     kableExtra,
     gt,
-    ragg
+    ragg,
+    chunkhooks
