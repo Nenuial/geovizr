@@ -85,6 +85,7 @@ gvz_render_pdf_document <- function(..., template_path, metadata) {
     ...,
     template = template_path,
     latex_engine = "xelatex",
+    citation_package = "biblatex",
     pandoc_args = project_metadata
   )
 }
