@@ -13,7 +13,7 @@ eng_latex_raw <- function(options) {
 
 # Formatting --------------------------------------------------------------
 
-#' Center text with width option
+#' (DEPRECATED) Center text with width option
 #'
 #' @param options
 #'
@@ -35,6 +35,8 @@ eng_center_text <- function(options) {
 # Boxes -------------------------------------------------------------------
 
 #' Classic box environment
+#'
+#' (DEPRECATED) !
 #'
 #' @param options
 #'
