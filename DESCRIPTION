@@ -32,4 +32,6 @@ Imports:
     kableExtra,
     gt,
     ragg,
-    chunkhooks
+    chunkhooks,
+    lifecycle
+Roxygen: list(markdown = TRUE)

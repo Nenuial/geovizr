@@ -13,12 +13,17 @@ eng_latex_raw <- function(options) {
 
 # Formatting --------------------------------------------------------------
 
-#' (DEPRECATED) Center text with width option
+#' Center text with width option
+#'
+#' @description
+#' `r lifecycle::badge("deprecated")`
 #'
 #' @param options
 #'
 #' @export
 eng_center_text <- function(options) {
+  lifecycle::deprecate_warn("0.1.0", "eng_center_text()")
+
   options$code <- options$code %>% knitr:::pandoc_fragment()
   options$type <- "center"
 
@@ -36,12 +41,15 @@ eng_center_text <- function(options) {
 
 #' Classic box environment
 #'
-#' (DEPRECATED) !
+#' @description
+#' `r lifecycle::badge("deprecated")`
 #'
 #' @param options
 #'
 #' @export
 eng_classic_box <- function(options) {
+  lifecycle::deprecate_warn("0.1.0", "eng_classic_box()")
+
   if(is.null(options$raw)) {
     options$code <- options$code %>% knitr:::pandoc_fragment()
   } else {

@@ -1,10 +1,10 @@
 #' Plot theme for knitted documents
 #'
 #' @inheritParams ggplot2::theme_minimal
-#' @param theme Override \code{\link[ggeo:ggeotheme]{ggeo::ggeotheme()}} theme parameter
-#' @param mode Override \code{\link[ggeo:ggeotheme]{ggeo::ggeotheme()}} mode parameter
+#' @param theme Override [ggeo::ggeotheme()] theme parameter
+#' @param mode Override [ggeo::ggeotheme()] mode parameter
 #'
-#' @seealso \code{\link[ggeo:ggeotheme]{ggeo::ggeotheme()}}
+#' @seealso [ggeo::ggeotheme()]
 #'
 #' @return A ggplot2 theme
 #' @export

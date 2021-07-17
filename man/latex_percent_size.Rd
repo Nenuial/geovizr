@@ -9,7 +9,7 @@ latex_percent_size(x, which = c("width", "height"), width = "\\\\linewidth")
 \arguments{
 \item{x}{The size in percents}
 
-\item{which}{One of `width` or `height`}
+\item{which}{One of \code{width} or \code{height}}
 
 \item{width}{The width measure to use}
 }
