@@ -25,8 +25,11 @@ gvz_bs4_book <- function(...) {
   fun_args <- list(...)
 
   fun_args$css <- gvz_file("rstudio/templates/project/resources/css/style.css")
-  fun_args$includes$in_header <- gvz_file("rstudio/templates/project/resources/html/fonts.html")
-  fun_args$theme$`font-family-sans-serif` <- "'Fira Sans', sans-serif"
+  fun_args$theme$base_font$google$family <- "Fira Sans"
+  fun_args$theme$base_font$google$wght <- 300
+  fun_args$theme$heading_font$google$family <- "Fira Sans"
+  fun_args$theme$heading_font$google$wght <- 500
+  fun_args$theme$code_font$google$family <- "Fira Code"
 
   bs4_book <- bookdown::bs4_book
   rlang::exec("bs4_book", !!!fun_args)
