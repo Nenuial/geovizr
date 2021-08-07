@@ -53,6 +53,43 @@ gvz_book_resources <- function() {
   here::here(geotools::gtl_options("book_resources"))
 }
 
+#' Render all tikz diagram in PDF format
+#'
+#' @param source Source file with tikz chunks
+#' @param out Path for diagram's to export to
+#'
+#' @export
+gvz_render_diagrams <- function(source, out) {
+  knitr::read_chunk(source)
+
+  knitr::all_labels() |>
+    purrr::walk(~ gvz_tikz_diagram(.x, out))
+}
+
+#' Generate tikz diagram
+#'
+#' @param label Tikz chunk label
+#' @param out Path for figure
+#'
+#' @return
+#' @keywords internal
+gvz_tikz_diagram <- function(label, out) {
+  tikz_options <- list()
+  tikz_options$label <- label
+  tikz_options$code <- knitr::knit_code$get(label)
+  tikz_options$echo <- TRUE
+  tikz_options$eval <- TRUE
+  tikz_options$out.width <- '100%'
+  tikz_options$fig.retina <- 2
+  tikz_options$fig.ext <- 'pdf'
+  tikz_options$fig.path <- out
+  tikz_options$engine.opts <- list()
+  tikz_options$engine.opts$template <- geovizr::tikz()
+  tikz_options$engine.opts$classoption <- geotools::gtl_opt_long_language()
+  tikz_options$engine.opts$extra.preamble <- paste0(r"[\graphicspath{{]", geovizr::gvz_book_resources(), "/}}")
+  knitr:::eng_tikz(tikz_options)
+}
+
 #' Custom Knit function for RStudio
 #'
 #' @export
