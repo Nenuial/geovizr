@@ -23,6 +23,7 @@
 \usepackage{mdframed}
 \usepackage{graphicx,lastpage}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 \usepackage{pgfplotstable}
 \usepackage{ragged2e}
 \usepackage{titlesec}
@@ -138,6 +139,9 @@ innerbottommargin=5pt]{dBox}
 % Setup solution boxes
 \BeforeBeginEnvironment{solutionorlines}{\par\nopagebreak\minipage{\linewidth}}
 \AfterEndEnvironment{solutionorlines}{\endminipage}
+
+% Replace underline command with uline
+\renewcommand*{\underline}[1]{\uline{#1}}
 
 % Define personal commands
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
