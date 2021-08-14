@@ -265,6 +265,9 @@ innerbottommargin=5pt]{dBox}
 \newenvironment{readalso}{\begin{cBox}\begin{readT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{readT}\end{cBox}}
 \newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
 
+% Description environment always start on a newline
+\setlist[description]{style=nextline}
+
 % Code environment
 \usepackage{color}
 \usepackage{fancyvrb}
