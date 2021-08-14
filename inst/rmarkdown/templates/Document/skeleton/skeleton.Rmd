@@ -11,8 +11,6 @@ output: geovizr::gvz_document
 ---
 
 ```{r setup, include=FALSE}
-library(geovizr)
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(warning = FALSE)
+geovizr::gvz_global_opts_chunk()
 ```
 
