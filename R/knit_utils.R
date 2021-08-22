@@ -9,6 +9,7 @@ gvz_global_opts_chunk <- function() {
 
   knitr::opts_template$set(
     fig = list(echo = FALSE, out.width = '100%'),
+    fig.eighty = list(echo = FALSE, out.width = '80%'),
     fig.half = list(echo = FALSE, out.width = '50%'),
     table = list(echo = FALSE),
     geo.graph = list(
