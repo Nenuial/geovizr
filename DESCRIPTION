@@ -34,9 +34,6 @@ Imports:
     chunkhooks,
     lifecycle,
     tweetrmd
-Suggests:
-    ggeo
 Remotes:
     gadenbuie/tweetrmd
-    Nenuial/ggeo
 Roxygen: list(markdown = TRUE)

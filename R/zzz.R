@@ -30,16 +30,4 @@
 
   needed %>%
     purrr::walk(check_latex_pkg)
-
-
-  # Check registered fonts --------------------------------------------------
-  registered <- sysfonts::font_families()
-  needed <- c("Helvetica", "Fira Sans", "Fira Sans Light")
-
-  check_registered_fonts <- function(font) {
-    if (!(font %in% registered)) gvz_register_fonts()
-  }
-
-  needed |>
-    purrr::walk(check_registered_fonts)
 }
