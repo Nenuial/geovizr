@@ -1,4 +1,4 @@
-#' Title
+#' Format cosmology object box
 #'
 #' @return
 #' @export
