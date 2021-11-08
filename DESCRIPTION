@@ -24,7 +24,6 @@ Imports:
     purrr,
     tinytex,
     xfun,
-    ggeo,
     downlit,
     tufte,
     magick,
@@ -34,9 +33,10 @@ Imports:
     ragg,
     chunkhooks,
     lifecycle,
-    tweetrmd,
-    sysfonts
+    tweetrmd
+Suggests:
+    ggeo
 Remotes:
-    gadenbuie/tweetrmd,
+    gadenbuie/tweetrmd
     Nenuial/ggeo
 Roxygen: list(markdown = TRUE)

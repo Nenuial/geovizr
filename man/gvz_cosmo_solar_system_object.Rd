@@ -2,7 +2,7 @@
 % Please edit documentation in R/df_cosmology.R
 \name{gvz_cosmo_solar_system_object}
 \alias{gvz_cosmo_solar_system_object}
-\title{Title}
+\title{Format cosmology object box}
 \usage{
 gvz_cosmo_solar_system_object(name)
 }
@@ -10,5 +10,5 @@ gvz_cosmo_solar_system_object(name)
 
 }
 \description{
-Title
+Format cosmology object box
 }
