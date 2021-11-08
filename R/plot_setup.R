@@ -30,3 +30,13 @@ ggeo_knit_theme <- function(..., theme = "doc", mode = "light") {
     ...
   )
 }
+
+#' Document ggeo theme
+#'
+#' @seealso [ggeo::ggeotheme()]
+#'
+#' @return A ggplot2 theme
+#' @export
+gvz_doc_theme <- function(...) {
+  ggeo::ggeotheme(theme = "doc", main = "main_latex", plot = "plot_latex", ...)
+}

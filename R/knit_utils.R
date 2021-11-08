@@ -38,14 +38,6 @@ gvz_global_opts_chunk <- function() {
   chunkhooks::hook_figure_unit(unit = "cm")
 }
 
-#' Document ggeo theme
-#'
-#' @return A ggplot2 theme
-#' @export
-gvz_doc_theme <- function() {
-  ggeo::ggeotheme("doc", "main_latex", "plot_latex")
-}
-
 #' Get the path for the book resources
 #'
 #' @return A full path with the book resources, defaults to project root
