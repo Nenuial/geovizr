@@ -15,6 +15,11 @@
   knitr::knit_engines$set(legal = eng_legal_list)
 
 
+  # Configuration -----------------------------------------------------------
+  # Use showtext
+  knitr::opts_chunk$set(fig.showtext = TRUE)
+
+
   # Check latex packages ----------------------------------------------------
   installed <- tinytex::tl_pkgs()
   needed <- c("babel-french", "babel-english", "datetime2-french", "datetime2-english", "pdfcrop", "firamath")
@@ -25,4 +30,16 @@
 
   needed %>%
     purrr::walk(check_latex_pkg)
+
+
+  # Check registered fonts --------------------------------------------------
+  registered <- sysfonts::font_families()
+  needed <- c("Helvetica", "Fira Sans", "Fira Sans Light")
+
+  check_registered_fonts <- function(font) {
+    if (!(font %in% registered)) gvz_register_fonts()
+  }
+
+  needed |>
+    purrr::walk(check_registered_fonts)
 }

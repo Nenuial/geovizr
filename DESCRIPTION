@@ -34,7 +34,9 @@ Imports:
     ragg,
     chunkhooks,
     lifecycle,
-    tweetrmd
+    tweetrmd,
+    sysfonts
 Remotes:
-    gadenbuie/tweetrmd
+    gadenbuie/tweetrmd,
+    Nenuial/ggeo
 Roxygen: list(markdown = TRUE)
