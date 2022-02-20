@@ -10,6 +10,7 @@
 \usepackage{tabto}
 \usepackage{longtable,ltxtable}
 \usepackage{array,multirow,multicol,booktabs}
+\usepackage{hhline}
 \usepackage[export]{adjustbox}
 \usepackage{makecell}
 \usepackage{xcolor,colortbl}
@@ -104,6 +105,23 @@
 \renewcommand{\dblfloatpagefraction}{0.7}
 
 % Define environement boxes
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=false,
+topline=false,
+bottomline=false,
+linecolor=gray,
+backgroundcolor=black!5,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=0pt,
+innertopmargin=5pt
+innerbottommargin=5pt]{aBox}
+
 \newmdenv[skipabove=7pt,
 skipbelow=7pt,
 rightline=false,
