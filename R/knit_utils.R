@@ -83,6 +83,45 @@ gvz_tikz_diagram <- function(label, out) {
   knitr:::eng_tikz(tikz_options)
 }
 
+#' Helper to convert from Markdown to LaTeX
+#'
+#' @param content String to convert
+#'
+#' @return A string in LaTeX
+#' @export
+gvz_md_to_latex <- function(content) {
+  knitr:::pandoc_fragment(text = content, from = "markdown", to = "latex")
+}
+
+#' Generate latex code for table from tibble
+#'
+#' @param tbl A tibble
+#' @param md_cols Columns to treat as markdown
+#'
+#' @return A collapsed string to use `asis`
+#' @export
+gvz_latex_table <- function(tbl, md_cols = c()) {
+  tbl |>
+    # Ensure all columns are character based and replace NAs with empty strings
+    dplyr::mutate(dplyr::across(where(is.numeric), as.character)) |>
+    dplyr::mutate(dplyr::across(.fns = ~tidyr::replace_na(.x, ""))) |>
+
+    # Mutate the "formated" columns (goes through pandoc and replaces \\ with \newline)
+    dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~stringr::str_replace_all(.x, "\n", "  \n"))) |>
+    dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~purrr::map_chr(.x, geovizr::gvz_md_to_latex))) |>
+    dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~stringr::str_replace_all(.x, r"(\\\\\n)", r"(\\newline )"))) |>
+
+    # Collapse the whole thing
+    dplyr::rowwise() |>
+    dplyr::transmute(text = stringr:::str_c(dplyr::c_across(), collapse = " & ")) |>
+    dplyr::mutate(text = glue::glue("{text}\\\\")) |>
+    dplyr::pull(text) |>
+    stringr::str_c(collapse = "\n") |>
+
+    # Ensure raw latex protection
+    knitr::raw_latex()
+}
+
 #' Custom Knit function for RStudio
 #'
 #' @export
