@@ -152,7 +152,10 @@ eng_image_legend <- function(options) {
     options$leg <- options$img.cap
   }
 
-  glue::glue(r"[\parbox[t]{(options$img.width)}{\strut\vspace*{-\baselineskip}\newline\includegraphics[width=.95\linewidth]{(options$code)}}]",
+  right_align <- ""
+  if (options$img.align == "right") right_align <- "\\raggedleft"
+
+  glue::glue(r"[\parbox[t]{(options$img.width)}{(right_align)\strut\vspace*{-\baselineskip}\newline\includegraphics[width=.95\linewidth]{(options$code)}}]",
   .open = "(", .close = ")") -> img
 
   glue::glue(r"[\parbox[t]{(options$leg.width)}{(options$leg)}]",
