@@ -28,11 +28,15 @@ top=2cm,bottom=2cm,headsep=0cm,footskip=.5cm]{geometry}
 
 % Define commands for heading and session infos
 \def\matuhead{%
-\setcounter{page}{1}\hspace{-1.03cm}\begin{tabularx}{\linewidth}{@{}XX@{}}\includegraphics[width=5.5cm, valign=t]{\globalpath images/confederation_ch.png} & \footnotesize Département fédéral de l'économie,\newline de la formation et de la recherche DEFR\newline\newline\textbf{Commission suisse de maturité CSM}\\\end{tabularx}\vspace{1cm}%
+\setcounter{page}{1}\hspace{-1.03cm}\begin{minipage}{\linewidth}%
+\begin{tabularx}{\linewidth}{@{}p{9.5cm}X@{}}\includegraphics[width=5.5cm, valign=t]{\globalpath images/confederation_ch.png} & \footnotesize Département fédéral de l'économie,\newline de la formation et de la recherche DEFR\newline\newline\textbf{Commission suisse de maturité CSM}\\\end{tabularx}%
+\end{minipage}\vspace{1cm}%
 }
 
 \newcommand{\matusession}[1]{%
-\hspace{-1.03cm}\begin{tabularx}{\linewidth}{@{}XX@{}}\hspace{1.03cm}\large\bfseries Examen suisse de maturité & \large\bfseries Session #1\\\hspace{1.03cm}\large\bfseries OC Géographie & \\\end{tabularx}\vspace{.5cm}%
+\begin{minipage}{\linewidth}%
+\begin{tabularx}{\linewidth}{@{}p{8.47cm}X@{}}\large\bfseries Examen suisse de maturité & \large\bfseries Session #1\\\large\bfseries OC Géographie & \\\end{tabularx}%
+\end{minipage}\vspace{.5cm}%
 }
 
 % Setup for list and paragraphe spaces
