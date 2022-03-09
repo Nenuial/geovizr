@@ -1,0 +1,12 @@
+# Groupe: `r group$name` {-}
+
+```{r echo=FALSE}
+group$students |>
+  flextable::flextable() |>
+  flextable::add_header_row(values = c(paste0("Moniteur: ", group$coach)), colwidths = c(2)) |>
+  flextable::width(j = c(1), width = 60, unit = "mm") |>
+  flextable::width(j = c(2), width = 22, unit = "mm") |> 
+  flextable::theme_vanilla()
+```
+
+\newpage

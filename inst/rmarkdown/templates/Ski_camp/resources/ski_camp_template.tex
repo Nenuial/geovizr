@@ -1,0 +1,16 @@
+\documentclass[11pt,$params.lang$,
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$$if(subclass)$,$subclass$$endif$]{article}
+
+\def\globalpath{$globalpath$}
+\input{$globalpath$/global.tex}
+
+\usepackage[paperwidth=105mm,paperheight=148mm,margin=0mm,top=5mm,left=10mm,right=10mm]{geometry}
+
+\begin{document}
+
+% Main document
+$body$
+
+\end{document}

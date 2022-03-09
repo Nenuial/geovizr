@@ -55,6 +55,16 @@ gvz_test_folder <- function(..., metadata = c()) {
   gvz_render_pdf_document(..., template_path = template, metadata = metadata)
 }
 
+#' Ski camp pdf document
+#'
+#' @param metadata Additional pandoc metadata
+#' @export
+gvz_ski <- function(..., metadata = c()) {
+  template <- gvz_file("rmarkdown/templates/Ski_camp/resources/ski_camp_template.tex")
+
+  gvz_render_pdf_document(..., template_path = template, metadata = metadata)
+}
+
 #' Letter pdf
 #'
 #' @param metadata Additional pandoc metadata

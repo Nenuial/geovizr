@@ -1,0 +1,14 @@
+---
+title: "Camp de ski"
+sign: "PBd"
+params:
+  lang: french
+  linenumbers: true
+knit: geovizr::knit_quiet
+output: geovizr::gvz_ski
+---
+
+```{r setup, include=FALSE}
+geovizr::gvz_global_opts_chunk()
+```
+
