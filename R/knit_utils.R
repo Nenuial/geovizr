@@ -32,6 +32,12 @@ gvz_global_opts_chunk <- function() {
     geo.cosmo.box = list(
       echo = FALSE,
       results = 'asis'
+    ),
+    geo.graph = list(
+      echo=FALSE,
+      fig.width=17.5,
+      fig.height=8,
+      out.width="100%"
     )
   )
 
