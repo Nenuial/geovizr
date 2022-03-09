@@ -108,7 +108,13 @@ eng_document_ref <- function(options) {
 #'
 #' @export
 eng_wrap_figure <- function(options) {
+  if(!knitr::is_latex_output()) {
+    warning("The image wrap engine isn't support in output formats other than pdf.")
+    return()
+  }
+
   options$code <- rlang::parse_expr(options$code) %>% eval()
+  options$fig.cap <- knitr:::pandoc_fragment(options$fig.cap, from = "markdown", to = "latex")
   options$out.width <- latex_percent_size(options$out.width, which = "width")
   options$wrap.width <- latex_percent_size(options$wrap.width, which = "width", width = "\\textwidth")
   if(is.null(options$wrap.margin)) options$wrap.margin <- ""
@@ -137,6 +143,7 @@ eng_image_legend <- function(options) {
   }
 
   options$code <- rlang::parse_expr(options$code) %>% eval()
+  options$img.cap <- knitr:::pandoc_fragment(options$img.cap, from = "markdown", to = "latex")
   options$leg.width <- latex_percent_size(
     paste0(100 - readr::parse_number(options$img.width), "%"),
     which = "width"
