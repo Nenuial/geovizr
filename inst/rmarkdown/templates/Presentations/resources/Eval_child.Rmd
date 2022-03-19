@@ -1,0 +1,73 @@
+# `r group$group_name` {-}
+
+```{r, echo=FALSE, results='asis'}
+glue::glue("\\def\\gradeissue{{{group$grade_issue}}}") |> cat()
+glue::glue("\\def\\gradepresentation{{{group$grade_presentation}}}") |> cat()
+glue::glue("\\def\\gradefinal{{{group$grade_final}}}") |> cat()
+```
+
+
+```{latex}
+\def\arraystretch{1.5}
+\begin{tabularx}{\linewidth}{@{}|X p{1cm}|p{1.5cm}|@{}}
+
+\hline
+\rowcolor[gray]{0.9}\multicolumn{2}{@{}|>{\bfseries}X}{Issue and structure (60\%)} & \multicolumn{1}{|p{1.5cm}|}{\centering \gradeissue}\\
+
+\hline
+
+\multicolumn{3}{@{}|>{\hsize=1.1\hsize}X|@{}}{%
+```
+
+```{r, echo=FALSE, results='asis'}
+group$student_eval |> 
+  dplyr::filter(
+    head == "Issue and structure",
+    type != "heading_1"
+  ) |> 
+  dplyr::pull(block) |> 
+  purrr::map_chr(~rnotion::rni_parse_block(.x, 0)) |>
+  cat()
+```
+
+```{latex}
+}\\
+
+\hline
+
+\multicolumn{3}{X}{~}\\
+
+\hline
+\rowcolor[gray]{0.9}\multicolumn{2}{@{}|>{\bfseries}X}{Presentation (40\%)} & \multicolumn{1}{|p{1.5cm}|}{\centering \gradepresentation}\\
+
+\hline
+
+\multicolumn{3}{@{}|>{\hsize=1.1\hsize}X|@{}}{%
+```
+
+```{r, echo=FALSE, results='asis'}
+group$student_eval |> 
+  dplyr::filter(
+    head == "Presentation",
+    type != "heading_1"
+  ) |> 
+  dplyr::pull(block) |> 
+  purrr::map_chr(~rnotion::rni_parse_block(.x, 0)) |>
+  cat()
+```
+
+```{latex}
+}\\
+
+\hline
+
+\multicolumn{3}{X}{~}\\
+
+\hline
+
+\rowcolor[gray]{0.9}\multicolumn{2}{@{}|>{\bfseries}X}{\trad{Grade}{Note}} & \multicolumn{1}{|p{1.5cm}|}{\bfseries\centering \gradefinal}\\
+
+\hline
+
+\end{tabularx}
+```
