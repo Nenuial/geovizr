@@ -10,3 +10,15 @@ group$students |>
 ```
 
 \newpage
+
+```{r echo=FALSE, include=FALSE}
+eval_instructor <- FALSE
+if (length(instructor_list > 0)) eval_instructor <- TRUE
+```
+
+```{r echo=FALSE, eval=eval_instructor, results='asis'}
+knitr::knit_child(input = geovizr::gvz_file("rmarkdown/templates/Ski_camp/resources/Instructor_child.Rmd"),
+                  quiet = TRUE,
+                  envir = environment()) |>
+  cat()
+```

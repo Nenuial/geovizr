@@ -1,0 +1,15 @@
+# Contacts {-}
+
+```{r echo=FALSE}
+instructor_list |>
+  flextable::flextable() |>
+  flextable::delete_part("header") |> 
+  flextable::add_header_row(values = responsable_ct) |>
+  flextable::add_header_row(values = responsable_cc) |>
+  flextable::add_header_row(values = c("Responsables CC & CT :"), colwidths = c(2)) |>
+  flextable::width(j = c(1), width = 50, unit = "mm") |>
+  flextable::width(j = c(2), width = 32, unit = "mm") |> 
+  flextable::theme_vanilla()
+```
+
+\newpage
