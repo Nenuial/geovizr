@@ -1,4 +1,4 @@
-# `r group$group_name` {-}
+# `r geotools::translate_enfr("Group:", "Groupe:")` `r group$group_name` {-}
 
 ```{r, echo=FALSE, results='asis'}
 glue::glue("\\def\\gradeissue{{{group$grade_issue}}}") |> cat()
@@ -12,7 +12,7 @@ glue::glue("\\def\\gradefinal{{{group$grade_final}}}") |> cat()
 \begin{tabularx}{\linewidth}{@{}|X p{1cm}|p{1.5cm}|@{}}
 
 \hline
-\rowcolor[gray]{0.9}\multicolumn{2}{@{}|>{\bfseries}X}{Issue and structure (60\%)} & \multicolumn{1}{|p{1.5cm}|}{\centering \gradeissue}\\
+\rowcolor[gray]{0.9}\multicolumn{2}{@{}|>{\bfseries}X}{\trad{Issue and structure}{Problématique et structure} (60\%)} & \multicolumn{1}{|p{1.5cm}|}{\centering \gradeissue}\\
 
 \hline
 
@@ -38,7 +38,7 @@ group$student_eval |>
 \multicolumn{3}{X}{~}\\
 
 \hline
-\rowcolor[gray]{0.9}\multicolumn{2}{@{}|>{\bfseries}X}{Presentation (40\%)} & \multicolumn{1}{|p{1.5cm}|}{\centering \gradepresentation}\\
+\rowcolor[gray]{0.9}\multicolumn{2}{@{}|>{\bfseries}X}{\trad{Presentation}{Présentation} (40\%)} & \multicolumn{1}{|p{1.5cm}|}{\centering \gradepresentation}\\
 
 \hline
 
