@@ -6,6 +6,10 @@ $endfor$$if(subclass)$,$subclass$$endif$]{exam}
 \def\globalpath{$globalpath$}
 \input{$globalpath$/global.tex}
 
+% Support for long tabularx (careful, not compatible with Matu LDDR!)
+\usepackage{ltablex}
+\keepXColumns
+
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------

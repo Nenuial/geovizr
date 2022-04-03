@@ -171,7 +171,7 @@ knit_letters <- function(input, ...) {
       output_options = list(metadata = metadata),
       output_file = paste0(
         fs::path_ext_remove(input),
-        "_", recipient[["last"]], "_", recipient[["first"]]
+        "_", janitor::make_clean_names(recipient[["address"]])
       ),
       quiet = TRUE,
       clean = TRUE,

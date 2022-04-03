@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper,addpoints,$params.lang$,
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$$if(subclass)$,$subclass$$endif$]{exam}
+
+\def\globalpath{$globalpath$}
+\input{$globalpath$/global.tex}
+
+% Setup page
+\usepackage[bindingoffset=0cm,left=1.5cm,right=1.5cm,top=3.3cm,
+bottom=2.5cm]{geometry}
+
+\usepackage{fancybox}
+
+\pointsinleftmargin
+\pointpoints{pt}{pts}
+\marginpointname{ \points}
+\pointformat{\footnotesize\boldmath\themarginpoints}
+\boxedpoints
+\usehorizontalhalf
+\renewcommand{\solutiontitle}{}
+
+\setlength{\fboxsep}{.3cm}
+
+\pagestyle{head}
+\header{\includegraphics[height=1.8cm]{\globalpath images/LDDR}}{}{\raisebox{.5cm}{\Ovalbox{\parbox{5cm}{\fontspec{Sansation}\centering Examens de maturité\\ Session $session$}}}}
+\runningheader{}{}{Nom, Prénom: \uline{\hspace{6cm}}}
+\footer{}{\thepage}{}
+
+\newcommand{\sectitle}[1]{%
+\begin{tBox}
+\begin{center}
+	\huge\textbf{\textsc{#1}}
+\end{center}
+\end{tBox}
+\vspace{.8cm}}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=true,
+leftline=true,
+topline=true,
+bottomline=true,
+linecolor=black,
+innerleftmargin=10pt,
+innerrightmargin=10pt,
+innertopmargin=15pt,
+innerbottommargin=15pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=1pt]{tpBox}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=true,
+leftline=true,
+topline=true,
+bottomline=true,
+linecolor=black,
+backgroundcolor=black!25,
+innerleftmargin=10pt,
+innerrightmargin=10pt,
+innertopmargin=25pt,
+innerbottommargin=25pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=1pt]{tBox}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=true,
+leftline=true,
+topline=true,
+bottomline=true,
+linecolor=black,
+backgroundcolor=black!5,
+innerleftmargin=6pt,
+innerrightmargin=6pt,
+innertopmargin=12pt,
+innerbottommargin=6pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=.3pt]{pressBox}
+
+\newenvironment{questiontable}
+{\parbox{2.5cm}{\small\emph{Valeur attribuée à la question~:}}\normalsize\\[.5cm]
+\par\noindent
+\tabularx{\linewidth}{@{}p{1.8cm}|p{.2cm} X@{}}}%
+{%
+\endtabularx%
+}
+
+\newcounter{myquestion}
+\setcounter{myquestion}{1}
+
+\newcommand{\exatitle}[1]{&\multicolumn{2}{X}{\large\textbf{#1}\normalsize}\\}
+
+\newcommand{\exaquestion}[2]{\textbf{#1 points} & \themyquestion\stepcounter{myquestion}. & #2\vspace{.2cm}\\}
+
+\newcommand{\exatotal}[1]{\textbf{Total~:\newline #1 points} & ~ & ~\\}
+
+\newcommand{\exadoc}[1]{\emph{DOCUMENT #1}}
+
+\newcommand{\exatable}[1]{\emph{TABLEAU #1}}
+\newcommand{\exatables}[1]{\emph{TABLEAUX #1}}
+
+\newcommand{\exabreak}[0]{\newline\newline}
+
+\def\arraystretch{1.5}
+
+\begin{document}
+
+% Test document
+\begingradingrange{geotest}
+~
+\vspace{2cm}
+\begin{center}
+	\fontspec{Sansation}\bfseries\Huge Option Complémentaire\\ Géographie
+	\vspace{3cm}
+\end{center}
+\vspace{2cm}
+
+\begin{tpBox}
+\begin{enumerate}\Large\centering
+	\item $sujet1$
+	\item $sujet2$
+\end{enumerate}
+\end{tpBox}
+\vspace{3cm}
+
+\renewcommand\ULthickness{1pt}\setlength\ULdepth{.5ex}\Large\bfseries
+Nom:\tabto{3cm} \uline{\hfill}\\[.5cm]
+Prénom:\tabto{3cm} \uline{\hfill}\\[.5cm]
+Classe:\tabto{3cm} \uline{\hfill}\\[.5cm]
+Groupe:\tabto{3cm} \uline{\hfill}\\[.5cm]
+
+\renewcommand\ULthickness{.5pt}\setlength\ULdepth{.3ex}\normalfont
+
+\clearpage
+\newgeometry{bindingoffset=0cm,left=1.5cm,right=1.5cm,top=2cm,
+bottom=2cm}
+\pagestyle{foot}
+
+$body$
+\endgradingrange{geotest}
+
+\end{document}

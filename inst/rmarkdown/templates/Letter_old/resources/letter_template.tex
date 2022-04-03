@@ -1,0 +1,35 @@
+\documentclass[11pt,a4paper,$params.lang$,
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$]{lettre}
+
+% Fix counters
+\newcounter{section}
+\newcounter{subsection}[section]
+\newcounter{subsubsection}[subsection]
+
+\def\globalpath{$globalpath$}
+\input{$globalpath$/global.tex}
+
+% Setup page
+\usepackage[bindingoffset=0in,left=2.8cm,right=2cm,
+top=2.5cm,bottom=2cm,headsep=.8cm]{geometry}
+\marge{-1cm}
+
+\begin{document}
+\begin{letter}{$first$ $last$\\$address$\\$zip$ $place$\\$country$}
+\lieu{$author.place$}
+\date{$date$}
+\email{$author.email$}
+\signature{$author.sign$}
+\def\concname{\textbf{\trad{Subject:}{Concerne~:~}}}
+\address{\centering\includegraphics[width=4cm]{$globalpath$/images/LDDR.png}\\[.2cm]
+		 $author.name$\\\trad{Geography}{Géographie}}
+\notelephone
+\nofax
+\conc{$subject$}
+\opening{$title$,}
+$body$
+\closing{Avec mes meilleures salutations.}
+\end{letter}
+\end{document}

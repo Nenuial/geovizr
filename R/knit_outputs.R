@@ -65,12 +65,81 @@ gvz_ski <- function(..., metadata = c()) {
   gvz_render_pdf_document(..., template_path = template, metadata = metadata)
 }
 
-#' Letter pdf
+#' LDDR pdf letter
 #'
 #' @param metadata Additional pandoc metadata
 #' @export
 gvz_letter <- function(..., metadata = c()) {
+  metadata <- c(
+    metadata,
+
+    rmarkdown::pandoc_metadata_arg(name = "logo",
+                                   value = gvz_file("rmarkdown/resources/images/LDDR_blue.pdf")),
+    rmarkdown::pandoc_metadata_arg(name = "logo-size",
+                                   value = "width=3.5cm"),
+
+    rmarkdown::pandoc_metadata_arg(name = "author",
+                                   value = "Pascal Burkhard"),
+    rmarkdown::pandoc_metadata_arg(name = "return-email",
+                                   value = "pascal.burkhard@rpn.ch"),
+    rmarkdown::pandoc_metadata_arg(name = "return-url",
+                                   value = "www.lddr.ch")
+  )
+
+  gvz_letter_standard(..., metadata = metadata)
+}
+
+#' Standard pdf letter
+#'
+#' @param metadata Additional pandoc metadata
+#' @keywords internal
+gvz_letter_standard <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Letter/resources/letter_template.tex")
+
+  lco_default <- gvz_file("rmarkdown/templates/Letter/resources/swiss.lco")
+  lco_default <- sub("\\.[^.]*$", "", lco_default)
+
+  metadata <- c(
+    metadata,
+    rmarkdown::pandoc_metadata_arg(name = "csquotes"),
+    rmarkdown::pandoc_metadata_arg(name = "lco_default",
+                                   value = lco_default),
+    rmarkdown::pandoc_metadata_arg(name = "papersize",
+                                   value = "a4")
+  )
+
+  base <- inherit_pdf_document(..., template=template,
+                               latex_engine = "xelatex",
+                               md_extensions=c("-autolink_bare_uris"),
+                               pandoc_args = metadata)
+
+  return(base)
+}
+
+#' Rmarkdown pdf document
+#'
+#' Call rmarkdown::pdf_document and mark the return
+#' value as inheriting pdf_document
+#'
+#' @param ...
+#'
+#' @return
+#' @keywords internal
+inherit_pdf_document <- function(...){
+  fmt <- rmarkdown::pdf_document(...)
+  fmt$inherits <- "pdf_document"
+
+  return(fmt)
+}
+
+#' Examen matu LDDR
+#'
+#' @param metadata Additional pandoc metadata
+#' @export
+gvz_matu <- function(..., metadata = c()) {
+  template <- gvz_file("rmarkdown/templates/Matu_lddr/resources/matu_lddr_template.tex")
+
+  metadata <- c(metadata, rmarkdown::pandoc_lua_filter_args(gvz_file("rmarkdown/templates/Matu_lddr/resources/matu_lddr.lua")))
 
   gvz_render_pdf_document(..., template_path = template, metadata = metadata)
 }
@@ -92,7 +161,11 @@ gvz_matu_oraux <- function(..., metadata = c()) {
 #' @keywords internal
 gvz_render_pdf_document <- function(..., template_path, metadata) {
   project_metadata <- gvz_metadata(fs::path_dir(template_path))
-  project_metadata <- c(project_metadata, metadata)
+  project_metadata <- c(
+    project_metadata,
+    metadata,
+    rmarkdown::pandoc_lua_filter_args(gvz_file("rmarkdown/lua/global.lua"))
+  )
 
   bookdown::pdf_document2(
     ...,

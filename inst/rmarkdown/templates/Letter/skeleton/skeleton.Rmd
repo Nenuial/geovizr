@@ -1,21 +1,14 @@
 ---
-subject:  "Letter subject"
-date:     "1 janvier 1970"
-author:
-  name:   "Pascal Burkhard"
-  sign:   "Pascal Burkhard"
-  email:  "pascal.burkhard@rpn.ch"
-  place:  "Neuchâtel"
-recipients:
-  - title:   "Madame"
-    first:   "First"
-    last:    "Last"
-    address: "Address"
-    zip:     "1000"
-    place:   "Lausanne"
-params:
-  lang: "french"
-knit: geovizr::knit_letters
+address:
+  - Hans Muster
+  - Street
+  - City
+
+subject: Topic
+opening: Dear Hans,
+
+closing: Best wishes,
+signature: Pascal Burkhard
+
 output: geovizr::gvz_letter
 ---
-

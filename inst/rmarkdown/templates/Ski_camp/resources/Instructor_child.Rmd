@@ -4,12 +4,14 @@
 instructor_list |>
   flextable::flextable() |>
   flextable::delete_part("header") |> 
-  flextable::add_header_row(values = responsable_ct) |>
-  flextable::add_header_row(values = responsable_cc) |>
-  flextable::add_header_row(values = c("Responsables CC & CT :"), colwidths = c(2)) |>
+  flextable::add_header_row(values = c("Responsables CC & CT :"), colwidths = c(2), top = F) |>
+  flextable::add_header_row(values = responsable_cc, top = F) |>
+  flextable::add_header_row(values = responsable_ct, top = F) |>
+  flextable::add_footer_row(values = service_pistes, colwidths = c(1,1)) |>
   flextable::width(j = c(1), width = 50, unit = "mm") |>
   flextable::width(j = c(2), width = 32, unit = "mm") |> 
-  flextable::theme_vanilla()
+  flextable::theme_vanilla() |> 
+  flextable::bold(part = "footer") 
 ```
 
 \newpage

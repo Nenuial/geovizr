@@ -1,0 +1,15 @@
+---
+session: "2022"
+sujet1: "Israël-Palestine"
+sujet2: "Russie"
+params:
+  lang: french
+  linenumbers: true
+knit: geovizr::knit_quiet
+output: geovizr::gvz_matu
+---
+
+```{r setup, include=FALSE}
+geovizr::gvz_global_opts_chunk()
+```
+
