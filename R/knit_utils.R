@@ -44,6 +44,13 @@ gvz_global_opts_chunk <- function() {
   chunkhooks::hook_figure_unit(unit = "cm")
 }
 
+#' Quarto chunk options setup
+#'
+#' @export
+gvz_quarto_setup <- function() {
+  knitr::opts_chunk$set(dev.args = c(bg = 'transparent'))
+}
+
 #' Get the path for the book resources
 #'
 #' @return A full path with the book resources, defaults to project root
@@ -171,7 +178,9 @@ knit_letters <- function(input, ...) {
       output_options = list(metadata = metadata),
       output_file = paste0(
         fs::path_ext_remove(input),
-        "_", janitor::make_clean_names(recipient[["address"]])
+        "_", janitor::make_clean_names(
+          paste0(recipient[["last"]], "_", recipient[["address"]])
+        )
       ),
       quiet = TRUE,
       clean = TRUE,

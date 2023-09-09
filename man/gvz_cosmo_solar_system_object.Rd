@@ -6,9 +6,6 @@
 \usage{
 gvz_cosmo_solar_system_object(name)
 }
-\value{
-
-}
 \description{
 Format cosmology object box
 }

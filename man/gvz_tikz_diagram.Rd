@@ -11,9 +11,6 @@ gvz_tikz_diagram(label, out)
 
 \item{out}{Path for figure}
 }
-\value{
-
-}
 \description{
 Generate tikz diagram
 }

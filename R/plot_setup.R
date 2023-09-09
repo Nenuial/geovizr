@@ -38,5 +38,23 @@ ggeo_knit_theme <- function(..., theme = "doc", mode = "light") {
 #' @return A ggplot2 theme
 #' @export
 gvz_doc_theme <- function(...) {
-  ggeo::ggeotheme(theme = "doc", main = "main_latex", plot = "plot_latex", ...)
+  if(knitr::is_html_output()) {
+    ggeo::ggeotheme(
+      theme = "doc", main = "main_latex", plot = "plot_latex",
+      plot.background =ggplot2::element_rect(fill = "white", color = NA),
+      ...
+    )
+  } else {
+    ggeo::ggeotheme(theme = "doc", main = "main_latex", plot = "plot_latex", ...)
+  }
+}
+
+#' Theme function for reveal presentations
+#'
+#' @param ... See [ggeo::ggeotheme()]
+#'
+#' @return An object of class [ggplot2::theme()].
+#' @export
+gvz_reveal_theme <- function(...) {
+  ggeo::ggeotheme(..., main = "main_svg", plot = "plot_svg")
 }
