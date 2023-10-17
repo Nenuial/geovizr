@@ -106,6 +106,21 @@ gvz_md_to_latex <- function(content) {
   knitr:::pandoc_fragment(text = content, from = "markdown", to = "latex")
 }
 
+#' Select output depending on format
+#'
+#' @param html_output Output for html format
+#' @param pdf_output  Output for pdf format
+#'
+#' @return The selected output
+#' @export
+gvz_html_or_pdf <- function(html_output, pdf_output) {
+  if (knitr::is_html_output()) {
+    html_output
+  } else {
+    pdf_output
+  }
+}
+
 #' Generate latex code for table from tibble
 #'
 #' @param tbl A tibble
