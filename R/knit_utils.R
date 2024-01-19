@@ -131,8 +131,8 @@ gvz_html_or_pdf <- function(html_output, pdf_output) {
 gvz_latex_table <- function(tbl, md_cols = c()) {
   tbl |>
     # Ensure all columns are character based and replace NAs with empty strings
-    dplyr::mutate(dplyr::across(where(is.numeric), as.character)) |>
-    dplyr::mutate(dplyr::across(.fns = ~tidyr::replace_na(.x, ""))) |>
+    dplyr::mutate(dplyr::across(.cols = dplyr::where(is.numeric), .fns = as.character)) |>
+    dplyr::mutate(dplyr::across(.cols = dplyr::everything(), .fns = ~tidyr::replace_na(.x, ""))) |>
 
     # Mutate the "formated" columns (goes through pandoc and replaces \\ with \newline)
     dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~stringr::str_replace_all(.x, "\n", "  \n"))) |>
