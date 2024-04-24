@@ -36,7 +36,7 @@ gvz_matu_data <- function(start_date, end_date) {
         direction = "ascending"
       ),
       list(
-        property = "Numéro du candidat",
+        property = "Num candidat",
         direction = "ascending"
       )
     )
@@ -53,11 +53,11 @@ gvz_matu_data <- function(start_date, end_date) {
 #' @keywords internal
 gvz_matu_data_assemble <- function(page) {
   candidate <- rnotion::rni_api_client()$pages$retrieve(page_id = page$id)
-  subject_page <- rnotion::rni_api_client()$pages$retrieve(page_id = page$properties$`Sujet attribué`$relation[[1]]$id)
+  subject_page <- rnotion::rni_api_client()$pages$retrieve(page_id = page$properties$`Sujet retenu`$relation[[1]]$id)
 
-  id <- candidate$properties$`Numéro du candidat`$title[[1]]$plain_text
+  id <- candidate$properties$`Num candidat`$title[[1]]$plain_text
   name <- paste(
-    candidate$properties$Prénom$rich_text[[1]]$plain_text,
+    candidate$properties$Prenom$rich_text[[1]]$plain_text,
     candidate$properties$Nom$rich_text[[1]]$plain_text
   )
   subject <- subject_page$properties$Name$title[[1]]$plain_text
