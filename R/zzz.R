@@ -20,14 +20,14 @@
   knitr::opts_chunk$set(fig.showtext = TRUE)
 
 
-  # Check latex packages ----------------------------------------------------
-  installed <- tinytex::tl_pkgs()
-  needed <- c("babel-french", "babel-english", "datetime2-french", "datetime2-english", "pdfcrop", "firamath")
-
-  check_latex_pkg <- function(pkg) {
-    if (!(pkg %in% installed)) tinytex::tlmgr_install(pkg)
-  }
-
-  needed %>%
-    purrr::walk(check_latex_pkg)
+  # # Check latex packages ----------------------------------------------------
+  # installed <- tinytex::tl_pkgs()
+  # needed <- c("babel-french", "babel-english", "datetime2-french", "datetime2-english", "pdfcrop", "firamath")
+  #
+  # check_latex_pkg <- function(pkg) {
+  #   if (!(pkg %in% installed)) tinytex::tlmgr_install(pkg)
+  # }
+  #
+  # needed %>%
+  #   purrr::walk(check_latex_pkg)
 }
