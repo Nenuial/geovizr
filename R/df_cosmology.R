@@ -1,6 +1,5 @@
 #' Format cosmology object box
 #'
-#' @return
 #' @export
 gvz_cosmo_solar_system_object <- function(name) {
   geodata::df_cosmology_solar_system_objects |>

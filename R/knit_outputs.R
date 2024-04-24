@@ -123,7 +123,6 @@ gvz_letter_standard <- function(..., metadata = c()) {
 #'
 #' @param ...
 #'
-#' @return
 #' @keywords internal
 inherit_pdf_document <- function(...){
   fmt <- rmarkdown::pdf_document(...)

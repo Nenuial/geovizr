@@ -77,7 +77,6 @@ gvz_render_diagrams <- function(source, out) {
 #' @param label Tikz chunk label
 #' @param out Path for figure
 #'
-#' @return
 #' @keywords internal
 gvz_tikz_diagram <- function(label, out) {
   tikz_options <- list()

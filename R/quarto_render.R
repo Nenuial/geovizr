@@ -1,13 +1,17 @@
-#' Render Test folders
+#' Render multiple files
 #'
-#' @param students A tibble of students
+#' @param students A tibble of values for each file
 #' @param template A quarto template
 #'
 #' @return Generate pdf files
 #' @export
-gvz_render_test_folders <- function(students, template, output_dir) {
-  students |>
-    purrr::pwalk(\(...) gvz_walk_test_folders(template, output_dir, ...))
+gvz_render_multiple <- function(data, template, output_dir, merge = F) {
+  data |>
+    purrr::pmap(\(...) gvz_walk_multiple(template, output_dir, ...)) -> files
+
+  if(merge) {
+    pdftools::pdf_combine(files, output = fs::path(output_dir, merge, ext = "pdf"))
+  }
 }
 
 #' Walk the folders
@@ -17,19 +21,19 @@ gvz_render_test_folders <- function(students, template, output_dir) {
 #'
 #' @return Nothing
 #' @keywords internal
-gvz_walk_test_folders <- function(template, output_dir, ...) {
-  student_data <- list(...)
+gvz_walk_multiple <- function(template, output_dir, ...) {
+  data <- list(...)
 
-  student_data |>
+  data |>
     purrr::imap(
       \(x, y) rmarkdown::pandoc_metadata_arg(y, x)
-    ) |> unname() |> unlist() -> student_metadata
+    ) |> unname() |> unlist() -> metadata
 
   quarto::quarto_render(
     input = template,
-    output_file = paste0(student_data$`student-name`, ".pdf"),
-    pandoc_args = student_metadata
+    output_file = paste0(data$`file`, ".pdf"),
+    pandoc_args = metadata
   )
 
-  fs::file_move(paste0(student_data$`student-name`, ".pdf"), output_dir)
+  return(fs::file_move(paste0(data$`file`, ".pdf"), output_dir))
 }
