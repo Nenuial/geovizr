@@ -6,6 +6,8 @@ Authors@R:
     person("Pascal", "Burkhard", , "pascal.burkhard@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0001-5504-5084"))
 Description: Provide support functions for the Quarto and Rmd documents.
+URL: https://geovizr.nenuial.org
+BugReports: http://github.com/nenuial/geovizr/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
