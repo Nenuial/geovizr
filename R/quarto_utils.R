@@ -1,10 +1,20 @@
 #' Render multiple files
 #'
-#' @param students A tibble of values for each file
 #' @param template A quarto template
+#' @param data A tibble
+#'   Each row will generate a new document, the data in the columns
+#'   is passed as variables to be used in the template.
+#' @param output_dir The directory to render the files to
+#' @param merge If a string, merges the multiple document in document
+#'   with the corresponding name. Default is false.
 #'
 #' @return Generate pdf files
 #' @export
+#' @examplesIf interactive()
+#' # Read a file containing the data used in the template
+#' readr::read_csv("data_file.csv") |>
+#'   gvz_render_multiple("template.qmd", "./")
+#'
 gvz_render_multiple <- function(data, template, output_dir, merge = F) {
   data |>
     purrr::pmap(\(...) gvz_walk_multiple(template, output_dir, ...)) -> files
@@ -19,7 +29,7 @@ gvz_render_multiple <- function(data, template, output_dir, merge = F) {
 #' @param template The template
 #' @param ... The parameter for the rest
 #'
-#' @return Nothing
+#' @return NULL
 #' @keywords internal
 gvz_walk_multiple <- function(template, output_dir, ...) {
   data <- list(...)
@@ -36,4 +46,17 @@ gvz_walk_multiple <- function(template, output_dir, ...) {
   )
 
   return(fs::file_move(paste0(data$`file`, ".pdf"), output_dir))
+}
+
+#' Quarto chunk options setup
+#'
+#' Set useful chunk options in Quarto documents.
+#'
+#' @return NULL
+#' @export
+#' @examples
+#' gvz_quarto_setup()
+#'
+gvz_quarto_setup <- function() {
+  knitr::opts_chunk$set(dev.args = c(bg = 'transparent'))
 }

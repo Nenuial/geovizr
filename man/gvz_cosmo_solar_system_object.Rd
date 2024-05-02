@@ -6,6 +6,17 @@
 \usage{
 gvz_cosmo_solar_system_object(name)
 }
+\arguments{
+\item{name}{Name of the cosmology object
+
+This can be one of \emph{Sun, Mercury, Venus, Earth, Mars,
+Jupiter, Saturn, Uranus, Neptune} or \emph{Pluto}.}
+}
 \description{
 Format cosmology object box
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: should be used in Rmd/Quarto documents
+\dontshow{\}) # examplesIf}
 }

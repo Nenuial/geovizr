@@ -1,6 +1,14 @@
 #' Format cosmology object box
 #'
+#' @param name Name of the cosmology object
+#'
+#'   This can be one of *Sun, Mercury, Venus, Earth, Mars,
+#'   Jupiter, Saturn, Uranus, Neptune* or *Pluto*.
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used in Rmd/Quarto documents
+#'
 gvz_cosmo_solar_system_object <- function(name) {
   geodata::df_cosmology_solar_system_objects |>
     dplyr::filter(english == name) -> object_data

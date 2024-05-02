@@ -7,7 +7,7 @@
 knit_cleanup(input)
 }
 \arguments{
-\item{path}{A folder to check for files}
+\item{input}{The path to clean}
 }
 \description{
 Remove all temporary files

@@ -12,3 +12,7 @@ A full path to the tikz template stub
 \description{
 Get the path for the tikz template stub
 }
+\examples{
+tikz()
+
+}

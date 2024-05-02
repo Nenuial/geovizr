@@ -1,13 +1,17 @@
 #' Plot theme for knitted documents
 #'
-#' @inheritParams ggplot2::theme_minimal
-#' @param theme Override [ggeo::ggeotheme()] theme parameter
-#' @param mode Override [ggeo::ggeotheme()] mode parameter
+#' @inheritParams ggeo::ggeotheme
 #'
-#' @seealso [ggeo::ggeotheme()]
+#' @seealso [`ggeo::ggeotheme()`]
 #'
 #' @return A ggplot2 theme
 #' @export
+#' @examples
+#' cars |>
+#'   ggplot2::ggplot(ggplot2::aes(x = speed, y = dist)) +
+#'   ggplot2::geom_point() +
+#'   ggeo_knit_theme()
+#'
 ggeo_knit_theme <- function(..., theme = "doc", mode = "light") {
   if(knitr::is_latex_output()) {
     main <- "main_latex"
@@ -18,7 +22,7 @@ ggeo_knit_theme <- function(..., theme = "doc", mode = "light") {
   } else {
     main <- "main_latex"
     plot <- "plot_latex"
-    warning("This function is only intended to be used with knit output LaTeX or html! Defaulting to LaTeX setup.")
+    message("This function is only intended to be used with knit output LaTeX or html! Defaulting to LaTeX setup.")
   }
 
   ggeo::ggeotheme(
@@ -33,10 +37,17 @@ ggeo_knit_theme <- function(..., theme = "doc", mode = "light") {
 
 #' Document ggeo theme
 #'
-#' @seealso [ggeo::ggeotheme()]
+#' @inheritDotParams ggeo::ggeotheme
+#'
+#' @seealso [`ggeo::ggeotheme()`]
 #'
 #' @return A ggplot2 theme
 #' @export
+#' @examples
+#' cars |>
+#'   ggplot2::ggplot(ggplot2::aes(x = speed, y = dist)) +
+#'   ggplot2::geom_point() +
+#'   gvz_doc_theme()
 gvz_doc_theme <- function(...) {
   if(knitr::is_html_output()) {
     ggeo::ggeotheme(
@@ -51,10 +62,16 @@ gvz_doc_theme <- function(...) {
 
 #' Theme function for reveal presentations
 #'
-#' @param ... See [ggeo::ggeotheme()]
+#' @inheritDotParams ggeo::ggeotheme
 #'
-#' @return An object of class [ggplot2::theme()].
+#' @return A ggplot2 theme
 #' @export
+#' @examples
+#' cars |>
+#'   ggplot2::ggplot(ggplot2::aes(x = speed, y = dist)) +
+#'   ggplot2::geom_point() +
+#'   gvz_reveal_theme()
+#'
 gvz_reveal_theme <- function(...) {
   ggeo::ggeotheme(..., main = "main_svg", plot = "plot_svg")
 }

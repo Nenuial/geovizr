@@ -17,3 +17,4 @@ A tibble with exam data
 \description{
 Get exam data for Matu fédérale
 }
+\keyword{internal}

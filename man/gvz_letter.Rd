@@ -7,8 +7,21 @@
 gvz_letter(..., metadata = c())
 }
 \arguments{
+\item{...}{
+  Arguments passed on to \code{\link[=gvz_letter_standard]{gvz_letter_standard}}
+  \describe{
+    \item{\code{}}{}
+  }}
+
 \item{metadata}{Additional pandoc metadata}
 }
 \description{
 LDDR pdf letter
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: should be used as Rmd format in yaml frontmatter
+#
+# format: geovizir::gvz_letter
+\dontshow{\}) # examplesIf}
 }

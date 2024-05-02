@@ -7,6 +7,12 @@
 gvz_render_pdf_document(..., template_path, metadata)
 }
 \arguments{
+\item{...}{
+  Arguments passed on to \code{\link[bookdown:html_document2]{bookdown::pdf_document2}}
+  \describe{
+    \item{\code{}}{}
+  }}
+
 \item{template_path}{Path of the latex template}
 
 \item{metadata}{Vector with pandoc metadata}

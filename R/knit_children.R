@@ -1,6 +1,7 @@
 #' Knit child for MF oral exams
 #'
-#' @param ...
+#' @param ... Data that is passed to the fragment
+#'   Must have *ID*, *Name*, *Subject* and *Question*
 #'
 #' @return Knitted document
 #' @export

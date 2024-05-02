@@ -1,6 +1,12 @@
 #' Global chunk options
 #'
+#' Set useful global chunk options.
+#'
+#' @return NULL
 #' @export
+#' @examples
+#' gvz_global_opts_chunk()
+#'
 gvz_global_opts_chunk <- function() {
   knitr::opts_chunk$set(warning = FALSE)
   knitr::opts_chunk$set(message = FALSE)
@@ -15,13 +21,13 @@ gvz_global_opts_chunk <- function() {
     geo.graph = list(
       echo = FALSE, message = FALSE, out.width = '100%',
       fig.retina = 2,
-      fig.ext = if (knitr:::is_latex_output()) 'pdf' else 'png',
-      dev = if (knitr:::is_latex_output()) 'cairo_pdf' else 'png'
+      fig.ext = if (knitr::is_latex_output()) 'pdf' else 'png',
+      dev = if (knitr::is_latex_output()) 'cairo_pdf' else 'png'
     ),
     geo.tikz = list(
       echo = FALSE, out.width='100%',
       fig.retina = 2,
-      fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png',
+      fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png',
       engine='tikz',
       engine.opts = list(
         template = geovizr::tikz(),
@@ -44,17 +50,13 @@ gvz_global_opts_chunk <- function() {
   chunkhooks::hook_figure_unit(unit = "cm")
 }
 
-#' Quarto chunk options setup
-#'
-#' @export
-gvz_quarto_setup <- function() {
-  knitr::opts_chunk$set(dev.args = c(bg = 'transparent'))
-}
-
 #' Get the path for the book resources
 #'
 #' @return A full path with the book resources, defaults to project root
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used in a book project
+#' gvz_book_resources()
 gvz_book_resources <- function() {
   here::here(geotools::gtl_options("book_resources"))
 }
@@ -65,6 +67,10 @@ gvz_book_resources <- function() {
 #' @param out Path for diagram's to export to
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: needs a file with tikz chunks
+#' gvz_render_diagrams("file.Rmd", "out/directory/")
+#'
 gvz_render_diagrams <- function(source, out) {
   knitr::read_chunk(source)
 
@@ -101,6 +107,9 @@ gvz_tikz_diagram <- function(label, out) {
 #'
 #' @return A string in LaTeX
 #' @export
+#' @examples
+#' gvz_md_to_latex("Some text with **bold** and *italic* markup")
+#'
 gvz_md_to_latex <- function(content) {
   knitr:::pandoc_fragment(text = content, from = "markdown", to = "latex")
 }
@@ -112,6 +121,10 @@ gvz_md_to_latex <- function(content) {
 #'
 #' @return The selected output
 #' @export
+#' @examplesIf interactive()
+#' # Not run: for use in Rmd/Quarto documents
+#' gvz_html_or_pdf("The <b>HTML</b> output", "The \\textbf{LaTex} output")
+#'
 gvz_html_or_pdf <- function(html_output, pdf_output) {
   if (knitr::is_html_output()) {
     html_output
@@ -127,6 +140,11 @@ gvz_html_or_pdf <- function(html_output, pdf_output) {
 #'
 #' @return A collapsed string to use `asis`
 #' @export
+#' @examplesIf interactive()
+#' # Not run: use in Rmd/Quarto document
+#' table |>
+#'   gvz_latex_table()
+#'
 gvz_latex_table <- function(tbl, md_cols = c()) {
   tbl |>
     # Ensure all columns are character based and replace NAs with empty strings
@@ -140,7 +158,7 @@ gvz_latex_table <- function(tbl, md_cols = c()) {
 
     # Collapse the whole thing
     dplyr::rowwise() |>
-    dplyr::transmute(text = stringr:::str_c(dplyr::c_across(), collapse = " & ")) |>
+    dplyr::transmute(text = stringr::str_c(dplyr::c_across(), collapse = " & ")) |>
     dplyr::mutate(text = glue::glue("{text}\\\\")) |>
     dplyr::pull(text) |>
     stringr::str_c(collapse = "\n") |>
@@ -151,7 +169,15 @@ gvz_latex_table <- function(tbl, md_cols = c()) {
 
 #' Custom Knit function for RStudio
 #'
+#' @param input Input file
+#' @param ... Unused, for compatibility in yaml frontmatter
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: this function is for use in Rmd yaml frontmatter
+#' #
+#' # knit: geovizir::knit_quiet
+#'
 knit_quiet <- function(input, ...) {
   rmarkdown::render(
     input,
@@ -174,7 +200,14 @@ knit_quiet <- function(input, ...) {
 
 #' Custom knit function for multiple letters
 #'
+#' @param input The input file
+#' @param ... Unused, for compatibility in yaml frontmatter
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: this function is for use in Rmd yaml frontmatter
+#' #
+#' # knit: geovizir::knit_letters
 knit_letters <- function(input, ...) {
   yaml <- rmarkdown::yaml_front_matter(input)
 
@@ -211,7 +244,10 @@ knit_letters <- function(input, ...) {
 #' Knit subfiles
 #'
 #' @param input The input file
-#' @param keyword The subfile head as a named vector
+#' @param output The output file
+#' @param key Key to add to output filename
+#' @param value Subclass value
+#'
 #' @keywords internal
 knit_subfile <- function(input, output, key, value) {
   output_args <- list(
@@ -236,7 +272,8 @@ knit_subfile <- function(input, output, key, value) {
 
 #' Remove all temporary files
 #'
-#' @param path A folder to check for files
+#' @param input The path to clean
+#'
 #' @keywords internal
 knit_cleanup <- function(input) {
   fs::path_dir(path = input) %>%
@@ -249,6 +286,10 @@ knit_cleanup <- function(input) {
 #' @param path The path to start at
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: use in Rmd project
+#' knit_all()
+#'
 knit_all <- function(path = here::here()) {
   fs::dir_ls(path = path, recurse = TRUE, regexp = ".*\\.Rmd") %>%
     purrr::walk(~geovizr::knit_quiet(.x, encoding = "UTF-8"))
@@ -290,15 +331,22 @@ latex_percent_size <- function(x, which = c("width", "height"),
 #'
 #' @return A full path to the tikz template stub
 #' @export
+#' @examples
+#' tikz()
+#'
 tikz <- function() {
   gvz_file("rstudio/templates/project/resources/tex/tikz.tex")
 }
 
-#' Set chapter image in for LaTeX book
+#' Set chapter image in LaTeX book
 #'
 #' @param path The path to the image to use
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: use in Rmd book project
+#' chapter_image("path/to/chapter/image.png")
+#'
 chapter_image <- function(path) {
   if(!knitr::is_latex_output()) return()
 

@@ -12,3 +12,9 @@ knit_all(path = here::here())
 \description{
 Knit all Rmd files in the Project
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: use in Rmd project
+knit_all()
+\dontshow{\}) # examplesIf}
+}

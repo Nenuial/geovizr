@@ -1,42 +1,54 @@
 Package: geovizr
 Type: Package
-Title: Provide Support For RMarkdown
+Title: Provide Support for Knitr (Quarto/Rmd)
 Version: 0.2.0
-Author: Pascal Burkhard
-Maintainer: Pascal Burkhard <pascal.burkhard@gmail.com>
-Description: Provide support function for the RMarkdown files-
-License: CC0
+Authors@R: 
+    person("Pascal", "Burkhard", , "pascal.burkhard@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0001-5504-5084"))
+Description: Provide support functions for the Quarto and Rmd documents.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.1
 Imports: 
+    bookdown,
+    chunkhooks,
+    dplyr,
     fs,
+    geodata,
+    geotools,
+    ggeo,
+    ggplot2,
+    glue,
     here,
+    janitor,
+    knitr,
+    pdftools,
+    purrr,
+    quarto,
+    lifecycle,
+    magrittr,
+    tibble,
+    tidyr,
     readr,
     rlang,
     rmarkdown,
+    rnotion,
     stringr,
-    yaml,
-    tibble,
-    tidyr,
-    dplyr,
-    janitor,
-    purrr,
-    tinytex,
     xfun,
+    yaml
+Suggests:
     downlit,
-    tufte,
-    magick,
-    pdftools,
-    kableExtra,
     gt,
+    kableExtra,
+    magick,
     ragg,
-    chunkhooks,
-    lifecycle,
-    tweetrmd,
-    ggeo,
-    magrittr
+    tinytex,
+    tufte
 Remotes:
-    gadenbuie/tweetrmd,
-    Nenuial/ggeo
+    Nenuial/ggeo,
+    Nenuial/geodata,
+    Nenuial/geotools,
+    Nenuial/rnotion
 Roxygen: list(markdown = TRUE)
+Config/Needs/website: nenuial/geopkg

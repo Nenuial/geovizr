@@ -7,11 +7,17 @@
 eng_document_ref(options)
 }
 \arguments{
-\item{options}{knitr engine options}
+\item{options}{Chunk options}
 }
 \value{
 A string
 }
 \description{
-Provide a knit engine for AlXxx LaTeX commands
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: knitr engine for Rmd/Quarto documents
+eng_document_ref(list(type = "article", author = "Some author", code = "Some text"))
+\dontshow{\}) # examplesIf}
 }

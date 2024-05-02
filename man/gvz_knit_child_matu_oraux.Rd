@@ -7,7 +7,8 @@
 gvz_knit_child_matu_oraux(...)
 }
 \arguments{
-\item{...}{}
+\item{...}{Data that is passed to the fragment
+Must have \emph{ID}, \emph{Name}, \emph{Subject} and \emph{Question}}
 }
 \value{
 Knitted document

@@ -5,6 +5,7 @@
 #'
 #' @return A tibble with exam data
 #' @export
+#' @keywords internal
 gvz_matu_data <- function(start_date, end_date) {
   rnotion::rni_api_client()$databases$query(
     database_id = "5ced5c6f-8242-4ba6-8e75-5dbc26eddc68",

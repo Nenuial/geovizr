@@ -2,9 +2,13 @@
 
 #' Raw LaTeX
 #'
-#' @param options
+#' @param options Chunk options
+#'   Only the code part is used
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: knitr engine for Rmd/Quarto documents
+#' eng_latex_raw(list(code = "Some text with \\emph{emphasis}"))
 eng_latex_raw <- function(options) {
   options$code %>%
     knitr::raw_latex()
@@ -15,14 +19,17 @@ eng_latex_raw <- function(options) {
 
 #' Center text with width option
 #'
-#' @description
 #' `r lifecycle::badge("deprecated")`
 #'
-#' @param options
+#' @param options Chunk options
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: knitr engine for Rmd/Quarto documents
+#' eng_center_text(list(code = "Some text"))
+#'
 eng_center_text <- function(options) {
-  lifecycle::deprecate_warn("0.1.0", "eng_center_text()")
+  lifecycle::deprecate_warn("1.0.0", "eng_center_text()")
 
   options$code <- options$code %>% knitr:::pandoc_fragment()
   options$type <- "center"
@@ -41,14 +48,17 @@ eng_center_text <- function(options) {
 
 #' Classic box environment
 #'
-#' @description
 #' `r lifecycle::badge("deprecated")`
 #'
-#' @param options
+#' @param options Chunk options
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: knitr engine for Rmd/Quarto documents
+#' eng_classic_box(list(code = "Some text"))
+#'
 eng_classic_box <- function(options) {
-  lifecycle::deprecate_warn("0.1.0", "eng_classic_box()")
+  lifecycle::deprecate_warn("1.0.0", "eng_classic_box()")
 
   if(is.null(options$raw)) {
     options$code <- options$code %>% knitr:::pandoc_fragment()
@@ -62,11 +72,19 @@ eng_classic_box <- function(options) {
 
 #' Provide a knit engine for AlXxx LaTeX commands
 #'
-#' @param options knitr engine options
+#' `r lifecycle::badge("deprecated")`
+#'
+#' @param options Chunk options
 #'
 #' @return A string
 #' @export
+#' @examplesIf interactive()
+#' # Not run: knitr engine for Rmd/Quarto documents
+#' eng_document_ref(list(type = "article", author = "Some author", code = "Some text"))
+#'
 eng_document_ref <- function(options) {
+  lifecycle::deprecate_warn("1.0.0", "eng_document_ref()")
+
   if(!knitr::is_latex_output()) return()
 
   if(options$type == "article") {
@@ -104,10 +122,22 @@ eng_document_ref <- function(options) {
 
 #' Wrap image
 #'
-#' @param options
+#' `r lifecycle::badge("deprecated")`
+#'
+#' @param options Chunk options
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: knitr engine for Rmd/Quarto documents
+#' eng_wrap_figure(list(
+#'   fig.cap = "Image caption",
+#'   out.width = "80%",
+#'   wrap.width = "20%"
+#' ))
+#'
 eng_wrap_figure <- function(options) {
+  lifecycle::deprecate_warn("1.0.0", "eng_wrap_figure()")
+
   if(!knitr::is_latex_output()) {
     warning("The image wrap engine isn't support in output formats other than pdf.")
     return()
@@ -133,10 +163,22 @@ eng_wrap_figure <- function(options) {
 
 #' Insert figure environment
 #'
-#' @param options
+#' `r lifecycle::badge("deprecated")`
+#'
+#' @param options Chunk options
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: knitr engine for Rmd/Quarto documents
+#' eng_image_legend(list(
+#'   img.cap = "Image caption",
+#'   img.width = 80,
+#'   img.author = "Someone"
+#' ))
+#'
 eng_image_legend <- function(options) {
+  lifecycle::deprecate_warn("1.0.0", "eng_image_legend()")
+
   if(!knitr::is_latex_output()) {
     warning("The question engine isn't support in output formats other than pdf.")
     return()
@@ -181,10 +223,19 @@ eng_image_legend <- function(options) {
 
 #' Question in exam document
 #'
-#' @param options
+#' `r lifecycle::badge("deprecated")`
+#' Use quarto extension with solution filter.
+#'
+#' @param options Chunk options
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: knitr engine for Rmd/Quarto documents
+#' eng_exam_questions(code = "Some text")
+#'
 eng_exam_questions <- function(options) {
+  lifecycle::deprecate_warn("1.0.0", "eng_exam_questions()")
+
   if(!knitr::is_latex_output()) {
     warning("The question engine isn't support in output formats other than pdf.")
     return()
@@ -236,9 +287,13 @@ eng_exam_questions <- function(options) {
 
 #' Create paralist
 #'
-#' @param options
+#' @param options Chunk options
 #'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: knitr engine for Rmd/Quarto documents
+#' eng_legal_list(code = "Some text")
+#'
 eng_legal_list <- function(options) {
   options$code %>%
     stringr::str_c(collapse = "\n") %>%

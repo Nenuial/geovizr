@@ -15,3 +15,7 @@ A string in LaTeX
 \description{
 Helper to convert from Markdown to LaTeX
 }
+\examples{
+gvz_md_to_latex("Some text with **bold** and *italic* markup")
+
+}

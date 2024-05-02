@@ -17,3 +17,10 @@ A collapsed string to use \code{asis}
 \description{
 Generate latex code for table from tibble
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: use in Rmd/Quarto document
+table |>
+  gvz_latex_table()
+\dontshow{\}) # examplesIf}
+}

@@ -7,11 +7,28 @@
 gvz_reveal_theme(...)
 }
 \arguments{
-\item{...}{See \code{\link[ggeo:ggeotheme]{ggeo::ggeotheme()}}}
+\item{...}{
+  Arguments passed on to \code{\link[ggeo:ggeotheme]{ggeo::ggeotheme}}
+  \describe{
+    \item{\code{theme}}{Name of the theme to use. One of "ghibli_mononoke", "islamic_samarquand",
+"pomological_green", "pomological_red", "nord_blue", "swiss_red",
+"purple", "doc" or "oc_exams"}
+    \item{\code{main}}{One of \code{main}, \code{main_latex} or \code{main_exa}}
+    \item{\code{plot}}{One of \code{plot}, \code{plot_latex} or \code{plot_exa}}
+    \item{\code{mode}}{One of \code{light} or \code{dark}}
+    \item{\code{base}}{A ggplot2 theme}
+  }}
 }
 \value{
-An object of class \code{\link[ggplot2:theme]{ggplot2::theme()}}.
+A ggplot2 theme
 }
 \description{
 Theme function for reveal presentations
+}
+\examples{
+cars |>
+  ggplot2::ggplot(ggplot2::aes(x = speed, y = dist)) +
+  ggplot2::geom_point() +
+  gvz_reveal_theme()
+
 }

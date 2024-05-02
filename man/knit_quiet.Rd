@@ -6,6 +6,18 @@
 \usage{
 knit_quiet(input, ...)
 }
+\arguments{
+\item{input}{Input file}
+
+\item{...}{Unused, for compatibility in yaml frontmatter}
+}
 \description{
 Custom Knit function for RStudio
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: this function is for use in Rmd yaml frontmatter
+#
+# knit: geovizir::knit_quiet
+\dontshow{\}) # examplesIf}
 }

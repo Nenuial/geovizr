@@ -7,8 +7,15 @@
 eng_latex_raw(options)
 }
 \arguments{
-\item{options}{}
+\item{options}{Chunk options
+Only the code part is used}
 }
 \description{
 Raw LaTeX
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: knitr engine for Rmd/Quarto documents
+eng_latex_raw(list(code = "Some text with \\\\emph{emphasis}"))
+\dontshow{\}) # examplesIf}
 }

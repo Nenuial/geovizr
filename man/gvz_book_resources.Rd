@@ -12,3 +12,9 @@ A full path with the book resources, defaults to project root
 \description{
 Get the path for the book resources
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: should be used in a book project
+gvz_book_resources()
+\dontshow{\}) # examplesIf}
+}

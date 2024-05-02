@@ -6,6 +6,18 @@
 \usage{
 knit_letters(input, ...)
 }
+\arguments{
+\item{input}{The input file}
+
+\item{...}{Unused, for compatibility in yaml frontmatter}
+}
 \description{
 Custom knit function for multiple letters
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: this function is for use in Rmd yaml frontmatter
+#
+# knit: geovizir::knit_letters
+\dontshow{\}) # examplesIf}
 }

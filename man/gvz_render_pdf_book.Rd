@@ -7,6 +7,26 @@
 gvz_render_pdf_book(..., template_path, metadata)
 }
 \arguments{
+\item{...}{
+  Arguments passed on to \code{\link[bookdown:pdf_book]{bookdown::pdf_book}}
+  \describe{
+    \item{\code{toc,number_sections,fig_caption,pandoc_args}}{See
+\code{rmarkdown::\link{pdf_document}}, or the documentation of the
+\code{base_format} function.}
+    \item{\code{base_format}}{An output format function to be used as the base format.}
+    \item{\code{toc_unnumbered}}{Whether to add unnumbered headers to the table of
+contents.}
+    \item{\code{toc_appendix}}{Whether to add the appendix to the table of contents.}
+    \item{\code{toc_bib}}{Whether to add the bibliography section to the table of
+contents.}
+    \item{\code{quote_footer}}{If a character vector of length 2 and the quote footer
+starts with three dashes (\samp{---}), \code{quote_footer[1]} will be
+prepended to the footer, and \code{quote_footer[2]} will be appended; if
+\code{NULL}, the quote footer will not be processed.}
+    \item{\code{highlight_bw}}{Whether to convert colors for syntax highlighting to
+black-and-white (grayscale).}
+  }}
+
 \item{template_path}{Path of the latex template}
 
 \item{metadata}{Vector with pandoc metadata}

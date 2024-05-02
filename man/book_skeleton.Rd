@@ -6,6 +6,17 @@
 \usage{
 book_skeleton(path)
 }
+\arguments{
+\item{path}{The path to intall the ressources to}
+}
+\value{
+TRUE
+}
 \description{
 Install book files
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+book_skeleton("./")
+\dontshow{\}) # examplesIf}
 }

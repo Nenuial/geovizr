@@ -1,7 +1,14 @@
 #' Standard pdf document
 #'
+#' @inheritDotParams gvz_render_pdf_document
 #' @param metadata Additional pandoc metadata
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_document
+#'
 gvz_document <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Document/resources/document_template.tex")
 
@@ -10,8 +17,15 @@ gvz_document <- function(..., metadata = c()) {
 
 #' Book pdf
 #'
+#' @inheritDotParams gvz_render_pdf_book
 #' @param metadata Additional pandoc metadata
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_book
+#'
 gvz_book <- function(..., metadata = c()) {
   template <- gvz_file("rstudio/templates/project/resources/tex/template.tex")
 
@@ -20,7 +34,14 @@ gvz_book <- function(..., metadata = c()) {
 
 #' Book website
 #'
+#' @inheritDotParams bookdown::bs4_book
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_bs4_book
+#'
 gvz_bs4_book <- function(...) {
   fun_args <- list(...)
 
@@ -37,8 +58,15 @@ gvz_bs4_book <- function(...) {
 
 #' Test pdf
 #'
+#' @inheritDotParams gvz_render_pdf_document
 #' @param metadata Additional pandoc metadata
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_test
+#'
 gvz_test <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Test/resources/test_template.tex")
 
@@ -47,8 +75,15 @@ gvz_test <- function(..., metadata = c()) {
 
 #' Test with cover page pdf
 #'
+#' @inheritDotParams gvz_render_pdf_document
 #' @param metadata Additional pandoc metadata
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_test_folder
+#'
 gvz_test_folder <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Test_folder/resources/test_folder_template.tex")
 
@@ -57,8 +92,15 @@ gvz_test_folder <- function(..., metadata = c()) {
 
 #' Ski camp pdf document
 #'
+#' @inheritDotParams gvz_render_pdf_document
 #' @param metadata Additional pandoc metadata
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_ski
+#'
 gvz_ski <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Ski_camp/resources/ski_camp_template.tex")
 
@@ -67,8 +109,14 @@ gvz_ski <- function(..., metadata = c()) {
 
 #' LDDR pdf letter
 #'
+#' @inheritDotParams gvz_letter_standard
 #' @param metadata Additional pandoc metadata
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_letter
 gvz_letter <- function(..., metadata = c()) {
   metadata <- c(
     metadata,
@@ -91,7 +139,9 @@ gvz_letter <- function(..., metadata = c()) {
 
 #' Standard pdf letter
 #'
+#' @inheritDotParams inherit_pdf_document
 #' @param metadata Additional pandoc metadata
+#'
 #' @keywords internal
 gvz_letter_standard <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Letter/resources/letter_template.tex")
@@ -121,8 +171,7 @@ gvz_letter_standard <- function(..., metadata = c()) {
 #' Call rmarkdown::pdf_document and mark the return
 #' value as inheriting pdf_document
 #'
-#' @param ...
-#'
+#' @inheritDotParams rmarkdown::pdf_document
 #' @keywords internal
 inherit_pdf_document <- function(...){
   fmt <- rmarkdown::pdf_document(...)
@@ -133,8 +182,15 @@ inherit_pdf_document <- function(...){
 
 #' Examen matu LDDR
 #'
+#' @inheritDotParams gvz_render_pdf_document
 #' @param metadata Additional pandoc metadata
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_matu
+#'
 gvz_matu <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Matu_lddr/resources/matu_lddr_template.tex")
 
@@ -145,8 +201,15 @@ gvz_matu <- function(..., metadata = c()) {
 
 #' Oraux matu fédérale
 #'
+#' @inheritDotParams gvz_render_pdf_document
 #' @param metadata Additional pandoc metadata
+#'
 #' @export
+#' @examplesIf interactive()
+#' # Not run: should be used as Rmd format in yaml frontmatter
+#' #
+#' # format: geovizir::gvz_matu_oraux
+#'
 gvz_matu_oraux <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Matu_oraux/resources/matu_oraux_template.tex")
 
@@ -155,8 +218,10 @@ gvz_matu_oraux <- function(..., metadata = c()) {
 
 #' Render pdf documents
 #'
+#' @inheritDotParams bookdown::pdf_document2
 #' @param template_path Path of the latex template
 #' @param metadata Vector with pandoc metadata
+#'
 #' @keywords internal
 gvz_render_pdf_document <- function(..., template_path, metadata) {
   project_metadata <- gvz_metadata(fs::path_dir(template_path))
@@ -177,8 +242,10 @@ gvz_render_pdf_document <- function(..., template_path, metadata) {
 
 #' Render pdf books
 #'
+#' @inheritDotParams bookdown::pdf_book
 #' @param template_path Path of the latex template
 #' @param metadata Vector with pandoc metadata
+#'
 #' @keywords internal
 gvz_render_pdf_book <- function(..., template_path, metadata) {
   project_metadata <- gvz_metadata(fs::path_dir(template_path))

@@ -2,7 +2,7 @@
 % Please edit documentation in R/knit_utils.R
 \name{chapter_image}
 \alias{chapter_image}
-\title{Set chapter image in for LaTeX book}
+\title{Set chapter image in LaTeX book}
 \usage{
 chapter_image(path)
 }
@@ -10,5 +10,11 @@ chapter_image(path)
 \item{path}{The path to the image to use}
 }
 \description{
-Set chapter image in for LaTeX book
+Set chapter image in LaTeX book
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: use in Rmd book project
+chapter_image("path/to/chapter/image.png")
+\dontshow{\}) # examplesIf}
 }

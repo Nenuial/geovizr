@@ -1,6 +1,12 @@
 #' Install book files
 #'
+#' @param path The path to intall the ressources to
+#'
 #' @export
+#' @return TRUE
+#' @examplesIf interactive()
+#' book_skeleton("./")
+#'
 book_skeleton <- function(path) {
   # ensure directory exists
   dir.create(path, recursive = TRUE, showWarnings = FALSE)

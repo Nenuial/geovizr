@@ -7,5 +7,9 @@
 gvz_global_opts_chunk()
 }
 \description{
-Global chunk options
+Set useful global chunk options.
+}
+\examples{
+gvz_global_opts_chunk()
+
 }

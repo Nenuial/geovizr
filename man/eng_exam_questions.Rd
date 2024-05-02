@@ -7,8 +7,15 @@
 eng_exam_questions(options)
 }
 \arguments{
-\item{options}{}
+\item{options}{Chunk options}
 }
 \description{
-Question in exam document
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+Use quarto extension with solution filter.
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Not run: knitr engine for Rmd/Quarto documents
+eng_exam_questions(code = "Some text")
+\dontshow{\}) # examplesIf}
 }

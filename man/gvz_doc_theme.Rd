@@ -6,11 +6,30 @@
 \usage{
 gvz_doc_theme(...)
 }
+\arguments{
+\item{...}{
+  Arguments passed on to \code{\link[ggeo:ggeotheme]{ggeo::ggeotheme}}
+  \describe{
+    \item{\code{theme}}{Name of the theme to use. One of "ghibli_mononoke", "islamic_samarquand",
+"pomological_green", "pomological_red", "nord_blue", "swiss_red",
+"purple", "doc" or "oc_exams"}
+    \item{\code{main}}{One of \code{main}, \code{main_latex} or \code{main_exa}}
+    \item{\code{plot}}{One of \code{plot}, \code{plot_latex} or \code{plot_exa}}
+    \item{\code{mode}}{One of \code{light} or \code{dark}}
+    \item{\code{base}}{A ggplot2 theme}
+  }}
+}
 \value{
 A ggplot2 theme
 }
 \description{
 Document ggeo theme
+}
+\examples{
+cars |>
+  ggplot2::ggplot(ggplot2::aes(x = speed, y = dist)) +
+  ggplot2::geom_point() +
+  gvz_doc_theme()
 }
 \seealso{
 \code{\link[ggeo:ggeotheme]{ggeo::ggeotheme()}}

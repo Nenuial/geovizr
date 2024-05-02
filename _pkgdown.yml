@@ -1,0 +1,77 @@
+url: https://geovizr.nenuial.org
+template:
+  package: geopkg
+
+reference:
+- title: Quarto helper function
+  description: |
+    These function are here to help with Quarto projects.
+  contents:
+  - gvz_quarto_setup
+  - gvz_render_multiple
+
+- title: RMarkdown formats
+  description: |
+    Formats for RMarkdown document. These formats should no longer be used and
+    Quarto documents should be favored.
+  contents:
+  - gvz_book
+  - gvz_bs4_book
+  - gvz_document
+  - gvz_letter
+  - gvz_matu
+  - gvz_matu_oraux
+  - gvz_ski
+  - gvz_test
+  - gvz_test_folder
+
+- title: Knitr helper function
+  description: |
+    These function are here to help with RMarkdown projects.
+  contents:
+  - gvz_book_resources
+  - gvz_global_opts_chunk
+  - gvz_html_or_pdf
+  - gvz_knit_child_matu_oraux
+  - gvz_latex_table
+  - gvz_md_to_latex
+  - gvz_render_diagrams
+  - book_skeleton
+  - tikz
+
+- title: Knit process
+  description: |
+    These function are used as knit process in RMarkdown documents.
+  contents:
+  - knit_all
+  - knit_letters
+  - knit_quiet
+
+- title: Knitr engines
+  description: |
+    These functions provide knitr engines. Most of these are no longer up to date
+    and are mostly *deprecated* with Quarto!
+  contents:
+  - eng_center_text
+  - eng_classic_box
+  - eng_document_ref
+  - eng_exam_questions
+  - eng_image_legend
+  - eng_latex_raw
+  - eng_legal_list
+  - eng_wrap_figure
+
+- title: Format helper functions
+  description: |
+    Functions that format specific items.
+  contents:
+  - gvz_cosmo_solar_system_object
+  - chapter_image
+
+- title: Plot themes
+  description: |
+    These functions help format plots for final documents.
+  contents:
+  - ggeo_knit_theme
+  - gvz_doc_theme
+  - gvz_reveal_theme

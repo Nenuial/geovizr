@@ -9,7 +9,11 @@ knit_subfile(input, output, key, value)
 \arguments{
 \item{input}{The input file}
 
-\item{keyword}{The subfile head as a named vector}
+\item{output}{The output file}
+
+\item{key}{Key to add to output filename}
+
+\item{value}{Subclass value}
 }
 \description{
 Knit subfiles
