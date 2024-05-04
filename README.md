@@ -19,7 +19,7 @@ remotes::install_github("Nenuial/geovizr")
 Or from r-universe:
 
 ``` r
-install.packages("geovizr", repos = c("https://nenuial.r-universe.dev"))
+install.packages('geographer', repos = c('https://nenuial.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## Documentation
