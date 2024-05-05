@@ -13,10 +13,10 @@
 #'   ggeo_knit_theme()
 #'
 ggeo_knit_theme <- function(..., theme = "doc", mode = "light") {
-  if(knitr::is_latex_output()) {
+  if (knitr::is_latex_output()) {
     main <- "main_latex"
     plot <- "plot_latex"
-  } else if(knitr::is_html_output()) {
+  } else if (knitr::is_html_output()) {
     main <- "main_html"
     plot <- "plot_html"
   } else {
@@ -49,10 +49,10 @@ ggeo_knit_theme <- function(..., theme = "doc", mode = "light") {
 #'   ggplot2::geom_point() +
 #'   gvz_doc_theme()
 gvz_doc_theme <- function(...) {
-  if(knitr::is_html_output()) {
+  if (knitr::is_html_output()) {
     ggeo::ggeotheme(
       theme = "doc", main = "main_latex", plot = "plot_latex",
-      plot.background =ggplot2::element_rect(fill = "white", color = NA),
+      plot.background = ggplot2::element_rect(fill = "white", color = NA),
       ...
     )
   } else {

@@ -120,18 +120,26 @@ gvz_ski <- function(..., metadata = c()) {
 gvz_letter <- function(..., metadata = c()) {
   metadata <- c(
     metadata,
-
-    rmarkdown::pandoc_metadata_arg(name = "logo",
-                                   value = gvz_file("rmarkdown/resources/images/LDDR_blue.pdf")),
-    rmarkdown::pandoc_metadata_arg(name = "logo-size",
-                                   value = "width=3.5cm"),
-
-    rmarkdown::pandoc_metadata_arg(name = "author",
-                                   value = "Pascal Burkhard"),
-    rmarkdown::pandoc_metadata_arg(name = "return-email",
-                                   value = "pascal.burkhard@rpn.ch"),
-    rmarkdown::pandoc_metadata_arg(name = "return-url",
-                                   value = "www.lddr.ch")
+    rmarkdown::pandoc_metadata_arg(
+      name = "logo",
+      value = gvz_file("rmarkdown/resources/images/LDDR_blue.pdf")
+    ),
+    rmarkdown::pandoc_metadata_arg(
+      name = "logo-size",
+      value = "width=3.5cm"
+    ),
+    rmarkdown::pandoc_metadata_arg(
+      name = "author",
+      value = "Pascal Burkhard"
+    ),
+    rmarkdown::pandoc_metadata_arg(
+      name = "return-email",
+      value = "pascal.burkhard@rpn.ch"
+    ),
+    rmarkdown::pandoc_metadata_arg(
+      name = "return-url",
+      value = "www.lddr.ch"
+    )
   )
 
   gvz_letter_standard(..., metadata = metadata)
@@ -152,16 +160,22 @@ gvz_letter_standard <- function(..., metadata = c()) {
   metadata <- c(
     metadata,
     rmarkdown::pandoc_metadata_arg(name = "csquotes"),
-    rmarkdown::pandoc_metadata_arg(name = "lco_default",
-                                   value = lco_default),
-    rmarkdown::pandoc_metadata_arg(name = "papersize",
-                                   value = "a4")
+    rmarkdown::pandoc_metadata_arg(
+      name = "lco_default",
+      value = lco_default
+    ),
+    rmarkdown::pandoc_metadata_arg(
+      name = "papersize",
+      value = "a4"
+    )
   )
 
-  base <- inherit_pdf_document(..., template=template,
-                               latex_engine = "xelatex",
-                               md_extensions=c("-autolink_bare_uris"),
-                               pandoc_args = metadata)
+  base <- inherit_pdf_document(...,
+    template = template,
+    latex_engine = "xelatex",
+    md_extensions = c("-autolink_bare_uris"),
+    pandoc_args = metadata
+  )
 
   return(base)
 }
@@ -173,7 +187,7 @@ gvz_letter_standard <- function(..., metadata = c()) {
 #'
 #' @inheritDotParams rmarkdown::pdf_document
 #' @keywords internal
-inherit_pdf_document <- function(...){
+inherit_pdf_document <- function(...) {
   fmt <- rmarkdown::pdf_document(...)
   fmt$inherits <- "pdf_document"
 
@@ -194,7 +208,12 @@ inherit_pdf_document <- function(...){
 gvz_matu <- function(..., metadata = c()) {
   template <- gvz_file("rmarkdown/templates/Matu_lddr/resources/matu_lddr_template.tex")
 
-  metadata <- c(metadata, rmarkdown::pandoc_lua_filter_args(gvz_file("rmarkdown/templates/Matu_lddr/resources/matu_lddr.lua")))
+  metadata <- c(
+    metadata,
+    rmarkdown::pandoc_lua_filter_args(
+      gvz_file("rmarkdown/templates/Matu_lddr/resources/matu_lddr.lua")
+    )
+  )
 
   gvz_render_pdf_document(..., template_path = template, metadata = metadata)
 }
@@ -269,19 +288,25 @@ gvz_render_pdf_book <- function(..., template_path, metadata) {
 gvz_metadata <- function(path) {
   metadata <- c()
 
-  if(fs::file_exists(here::here("_document.yaml"))) {
+  if (fs::file_exists(here::here("_document.yaml"))) {
     yaml::read_yaml(here::here("_document.yaml")) %>%
-      purrr::imap(~rmarkdown::pandoc_metadata_arg(
+      purrr::imap(~ rmarkdown::pandoc_metadata_arg(
         name = .y,
         value = .x
-      )) %>% purrr::as_vector() %>% unname() -> metadata
+      )) %>%
+      purrr::as_vector() %>%
+      unname() -> metadata
   }
 
-  c(metadata,
+  c(
+    metadata,
     rmarkdown::pandoc_metadata_arg(name = "globalpath", value = tex_global_path()),
-    rmarkdown::pandoc_metadata_arg(name = "templatepath",
-                                   value = paste0(path, "/")),
-    rmarkdown::pandoc_metadata_arg(name = "csquotes")) -> metadata
+    rmarkdown::pandoc_metadata_arg(
+      name = "templatepath",
+      value = paste0(path, "/")
+    ),
+    rmarkdown::pandoc_metadata_arg(name = "csquotes")
+  ) -> metadata
 
   return(metadata)
 }

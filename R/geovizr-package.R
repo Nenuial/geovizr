@@ -6,8 +6,10 @@
 NULL
 
 # Globals
-utils::globalVariables(c("lines", "code", "arg", "content", "english",
-                         "text", ".x"))
+utils::globalVariables(c(
+  "lines", "code", "arg", "content", "english",
+  "text", ".x"
+))
 
 #' @importFrom magrittr %>%
 #' @export

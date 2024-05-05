@@ -10,7 +10,8 @@ gvz_knit_child_matu_oraux <- function(...) {
 
   child <- knitr::knit_child(
     input = system.file("rmarkdown/templates/Matu_oraux/resources/matu_oraux_fragment.Rmd",
-                        package = "geovizr"),
+      package = "geovizr"
+    ),
     quiet = TRUE,
     envir = environment()
   )

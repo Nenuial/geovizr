@@ -4,7 +4,7 @@
 \alias{gvz_render_multiple}
 \title{Render multiple files}
 \usage{
-gvz_render_multiple(data, template, output_dir, merge = F)
+gvz_render_multiple(data, template, output_dir, merge = FALSE)
 }
 \arguments{
 \item{data}{A tibble

@@ -1,4 +1,4 @@
-.onLoad = function(lib, pkg) {
+.onLoad <- function(lib, pkg) {
   # Load engines ------------------------------------------------------------
   # General purpose
   knitr::knit_engines$set(latex = eng_latex_raw)

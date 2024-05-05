@@ -11,24 +11,24 @@ gvz_global_opts_chunk <- function() {
   knitr::opts_chunk$set(warning = FALSE)
   knitr::opts_chunk$set(message = FALSE)
   knitr::opts_chunk$set(fig.retina = 2)
-  knitr::opts_chunk$set(dev.args = c(bg = 'transparent'))
+  knitr::opts_chunk$set(dev.args = c(bg = "transparent"))
 
   knitr::opts_template$set(
-    fig = list(echo = FALSE, out.width = '100%'),
-    fig.eighty = list(echo = FALSE, out.width = '80%'),
-    fig.half = list(echo = FALSE, out.width = '50%'),
+    fig = list(echo = FALSE, out.width = "100%"),
+    fig.eighty = list(echo = FALSE, out.width = "80%"),
+    fig.half = list(echo = FALSE, out.width = "50%"),
     table = list(echo = FALSE),
     geo.graph = list(
-      echo = FALSE, message = FALSE, out.width = '100%',
+      echo = FALSE, message = FALSE, out.width = "100%",
       fig.retina = 2,
-      fig.ext = if (knitr::is_latex_output()) 'pdf' else 'png',
-      dev = if (knitr::is_latex_output()) 'cairo_pdf' else 'png'
+      fig.ext = if (knitr::is_latex_output()) "pdf" else "png",
+      dev = if (knitr::is_latex_output()) "cairo_pdf" else "png"
     ),
     geo.tikz = list(
-      echo = FALSE, out.width='100%',
+      echo = FALSE, out.width = "100%",
       fig.retina = 2,
-      fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png',
-      engine='tikz',
+      fig.ext = if (knitr::is_latex_output()) "pdf" else "png",
+      engine = "tikz",
       engine.opts = list(
         template = geovizr::tikz(),
         classoption = geotools::gtl_opt_long_language(),
@@ -37,13 +37,13 @@ gvz_global_opts_chunk <- function() {
     ),
     geo.cosmo.box = list(
       echo = FALSE,
-      results = 'asis'
+      results = "asis"
     ),
     geo.graph = list(
-      echo=FALSE,
-      fig.width=17.5,
-      fig.height=8,
-      out.width="100%"
+      echo = FALSE,
+      fig.width = 17.5,
+      fig.height = 8,
+      out.width = "100%"
     )
   )
 
@@ -90,9 +90,9 @@ gvz_tikz_diagram <- function(label, out) {
   tikz_options$code <- knitr::knit_code$get(label)
   tikz_options$echo <- TRUE
   tikz_options$eval <- TRUE
-  tikz_options$out.width <- '100%'
+  tikz_options$out.width <- "100%"
   tikz_options$fig.retina <- 2
-  tikz_options$fig.ext <- 'pdf'
+  tikz_options$fig.ext <- "pdf"
   tikz_options$fig.path <- out
   tikz_options$engine.opts <- list()
   tikz_options$engine.opts$template <- geovizr::tikz()
@@ -149,20 +149,19 @@ gvz_latex_table <- function(tbl, md_cols = c()) {
   tbl |>
     # Ensure all columns are character based and replace NAs with empty strings
     dplyr::mutate(dplyr::across(.cols = dplyr::where(is.numeric), .fns = as.character)) |>
-    dplyr::mutate(dplyr::across(.cols = dplyr::everything(), .fns = ~tidyr::replace_na(.x, ""))) |>
-
+    dplyr::mutate(dplyr::across(.cols = dplyr::everything(), .fns = ~ tidyr::replace_na(.x, ""))) |>
     # Mutate the "formated" columns (goes through pandoc and replaces \\ with \newline)
-    dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~stringr::str_replace_all(.x, "\n", "  \n"))) |>
-    dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~purrr::map_chr(.x, geovizr::gvz_md_to_latex))) |>
-    dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~stringr::str_replace_all(.x, r"(\\\\\n)", r"(\\newline )"))) |>
-
+    dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~ stringr::str_replace_all(.x, "\n", "  \n"))) |>
+    dplyr::mutate(dplyr::across(dplyr::any_of(md_cols), ~ purrr::map_chr(.x, geovizr::gvz_md_to_latex))) |>
+    dplyr::mutate(
+      dplyr::across(dplyr::any_of(md_cols), ~ stringr::str_replace_all(.x, r"(\\\\\n)", r"(\\newline )"))
+    ) |>
     # Collapse the whole thing
     dplyr::rowwise() |>
     dplyr::transmute(text = stringr::str_c(dplyr::c_across(), collapse = " & ")) |>
     dplyr::mutate(text = glue::glue("{text}\\\\")) |>
     dplyr::pull(text) |>
     stringr::str_c(collapse = "\n") |>
-
     # Ensure raw latex protection
     knitr::raw_latex()
 }
@@ -215,10 +214,12 @@ knit_letters <- function(input, ...) {
 
   render_letter <- function(recipient = .x, input) {
     recipient %>%
-      purrr::imap(~rmarkdown::pandoc_metadata_arg(
+      purrr::imap(~ rmarkdown::pandoc_metadata_arg(
         name = .y,
         value = .x
-      )) %>% purrr::as_vector() %>% unname() -> metadata
+      )) %>%
+      purrr::as_vector() %>%
+      unname() -> metadata
 
     rmarkdown::render(
       input = input,
@@ -292,7 +293,7 @@ knit_cleanup <- function(input) {
 #'
 knit_all <- function(path = here::here()) {
   fs::dir_ls(path = path, recurse = TRUE, regexp = ".*\\.Rmd") %>%
-    purrr::walk(~geovizr::knit_quiet(.x, encoding = "UTF-8"))
+    purrr::walk(~ geovizr::knit_quiet(.x, encoding = "UTF-8"))
 }
 
 #' Return full path to geovizr ressources
@@ -313,17 +314,22 @@ tex_global_path <- function() {
 #' @keywords internal
 latex_percent_size <- function(x, which = c("width", "height"),
                                width = "\\linewidth") {
-  if (!is.character(x))
+  if (!is.character(x)) {
     return(x)
+  }
   i <- grep("^[0-9.]+%$", x)
-  if (length(i) == 0)
+  if (length(i) == 0) {
     return(x)
+  }
   xi <- as.numeric(sub("%$", "", x[i]))
-  if (any(is.na(xi)))
+  if (any(is.na(xi))) {
     return(x)
+  }
   which <- match.arg(which)
-  x[i] <- paste0(formatC(xi / 100, decimal.mark = "."),
-                if (which == "width") width else "\\textheight")
+  x[i] <- paste0(
+    formatC(xi / 100, decimal.mark = "."),
+    if (which == "width") width else "\\textheight"
+  )
   x
 }
 
@@ -348,7 +354,9 @@ tikz <- function() {
 #' chapter_image("path/to/chapter/image.png")
 #'
 chapter_image <- function(path) {
-  if(!knitr::is_latex_output()) return()
+  if (!knitr::is_latex_output()) {
+    return()
+  }
 
   knitr::raw_latex(paste0(
     r"(\chapterimage{)",

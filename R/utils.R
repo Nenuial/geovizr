@@ -6,6 +6,6 @@
 #'
 #' @export
 #' @keywords internal
-gvz_file = function(...) {
-  system.file(..., package = 'geovizr', mustWork = TRUE)
+gvz_file <- function(...) {
+  system.file(..., package = "geovizr", mustWork = TRUE)
 }

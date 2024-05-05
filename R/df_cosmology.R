@@ -19,13 +19,13 @@ gvz_cosmo_solar_system_object <- function(name) {
   if (knitr::is_html_output()) {
     knitr::knit_child(
       gvz_file("resources/markdown/cosmo_solar_system_object_html.Rmd"),
-      options = list(results = 'asis'),
+      options = list(results = "asis"),
       envir = child_env
     ) |> knitr::raw_html() -> child
 
     cat(child)
   } else if (knitr::is_latex_output()) {
-   knitr::knit_child(
+    knitr::knit_child(
       gvz_file("resources/markdown/cosmo_solar_system_object_latex.Rmd"),
       envir = child_env
     ) |> knitr::raw_latex() -> child

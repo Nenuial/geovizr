@@ -9,8 +9,4 @@ output: geovizr::gvz_matu_oraux
 library(geovizr)
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(warning = FALSE)
-
-
 ```
-
-

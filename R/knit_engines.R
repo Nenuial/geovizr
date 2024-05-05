@@ -34,10 +34,11 @@ eng_center_text <- function(options) {
   options$code <- options$code %>% knitr:::pandoc_fragment()
   options$type <- "center"
 
-  if(!is.null(options$out.width)) {
+  if (!is.null(options$out.width)) {
     options$out.width <- knitr:::latex_percent_size(options$out.width, which = "width")
     options$code <- glue::glue(r"[\parbox{(options$out.width)}{(options$code)}]",
-                               .open = "(", .close = ")")
+      .open = "(", .close = ")"
+    )
   }
 
   knitr:::eng_block2(options)
@@ -60,7 +61,7 @@ eng_center_text <- function(options) {
 eng_classic_box <- function(options) {
   lifecycle::deprecate_warn("1.0.0", "eng_classic_box()")
 
-  if(is.null(options$raw)) {
+  if (is.null(options$raw)) {
     options$code <- options$code %>% knitr:::pandoc_fragment()
   } else {
     options$code <- options$code %>% knitr::raw_latex()
@@ -85,39 +86,48 @@ eng_classic_box <- function(options) {
 eng_document_ref <- function(options) {
   lifecycle::deprecate_warn("1.0.0", "eng_document_ref()")
 
-  if(!knitr::is_latex_output()) return()
+  if (!knitr::is_latex_output()) {
+    return()
+  }
 
-  if(options$type == "article") {
+  if (options$type == "article") {
     output <- glue::glue(r"[\AlArticle{(options$code)}{(options$author)}]",
-                         .open = "(", .close = ")") %>%
+      .open = "(", .close = ")"
+    ) %>%
       knitr::raw_latex()
 
     return(output)
   } else if (options$type == "book") {
     output <- glue::glue(r"[\AlBook{(options$code)}{(options$author)}]",
-                         .open = "(", .close = ")") %>%
+      .open = "(", .close = ")"
+    ) %>%
       knitr::raw_latex()
 
     return(output)
   } else if (options$type == "press") {
     output <- glue::glue(r"[\AlPress{(options$code)}{(options$author)}]",
-                         .open = "(", .close = ")") %>%
+      .open = "(", .close = ")"
+    ) %>%
       knitr::raw_latex()
 
     return(output)
   } else if (options$type == "page") {
     output <- glue::glue(r"[\AlPage[(options$author)]{(options$code)}{(options$date)}]",
-                         .open = "(", .close = ")") %>%
+      .open = "(", .close = ")"
+    ) %>%
       knitr::raw_latex()
 
     return(output)
   } else if (options$type == "interview") {
     output <- glue::glue(r"[\AlInterview{(options$code)}{(options$author)}{(options$inteviewer)}]",
-                         .open = "(", .close = ")") %>%
+      .open = "(", .close = ")"
+    ) %>%
       knitr::raw_latex()
 
     return(output)
-  } else return()
+  } else {
+    return()
+  }
 }
 
 #' Wrap image
@@ -138,7 +148,7 @@ eng_document_ref <- function(options) {
 eng_wrap_figure <- function(options) {
   lifecycle::deprecate_warn("1.0.0", "eng_wrap_figure()")
 
-  if(!knitr::is_latex_output()) {
+  if (!knitr::is_latex_output()) {
     warning("The image wrap engine isn't support in output formats other than pdf.")
     return()
   }
@@ -147,7 +157,7 @@ eng_wrap_figure <- function(options) {
   options$fig.cap <- knitr:::pandoc_fragment(options$fig.cap, from = "markdown", to = "latex")
   options$out.width <- latex_percent_size(options$out.width, which = "width")
   options$wrap.width <- latex_percent_size(options$wrap.width, which = "width", width = "\\textwidth")
-  if(is.null(options$wrap.margin)) options$wrap.margin <- ""
+  if (is.null(options$wrap.margin)) options$wrap.margin <- ""
   glue::glue(r"[
     \begin{wrapfigure}{(options$fig.align)}{(options$wrap.width)}
       \vspace{-2\intextsep}
@@ -158,7 +168,8 @@ eng_wrap_figure <- function(options) {
       \vspace{(options$wrap.margin)\intextsep}
     \end{wrapfigure}
   ]",
-  .open = "(", .close = ")") %>% knitr::raw_latex()
+    .open = "(", .close = ")"
+  ) %>% knitr::raw_latex()
 }
 
 #' Insert figure environment
@@ -179,7 +190,7 @@ eng_wrap_figure <- function(options) {
 eng_image_legend <- function(options) {
   lifecycle::deprecate_warn("1.0.0", "eng_image_legend()")
 
-  if(!knitr::is_latex_output()) {
+  if (!knitr::is_latex_output()) {
     warning("The question engine isn't support in output formats other than pdf.")
     return()
   }
@@ -193,10 +204,11 @@ eng_image_legend <- function(options) {
   options$img.width <- latex_percent_size(options$img.width, which = "width")
 
 
-  if(!is.null(options$img.author)) {
+  if (!is.null(options$img.author)) {
     glue::glue(r"[(options$img.cap)\newline
                (tufte::quote_footer(options$img.author))]",
-    .open = "(", .close = ")") -> options$leg
+      .open = "(", .close = ")"
+    ) -> options$leg
   } else {
     options$leg <- options$img.cap
   }
@@ -204,11 +216,15 @@ eng_image_legend <- function(options) {
   right_align <- ""
   if (options$img.align == "right") right_align <- "\\raggedleft"
 
+  # nolint start: line_length_linter
   glue::glue(r"[\parbox[t]{(options$img.width)}{(right_align)\strut\vspace*{-\baselineskip}\newline\includegraphics[width=.95\linewidth]{(options$code)}}]",
-  .open = "(", .close = ")") -> img
+    .open = "(", .close = ")"
+  ) -> img
+  # nolint end
 
   glue::glue(r"[\parbox[t]{(options$leg.width)}{(options$leg)}]",
-  .open = "(", .close = ")") -> leg
+    .open = "(", .close = ")"
+  ) -> leg
 
   if (options$img.align == "left") {
     latex_return <- paste0(img, "\n", leg) %>% knitr::raw_latex()
@@ -236,14 +252,15 @@ eng_image_legend <- function(options) {
 eng_exam_questions <- function(options) {
   lifecycle::deprecate_warn("1.0.0", "eng_exam_questions()")
 
-  if(!knitr::is_latex_output()) {
+  if (!knitr::is_latex_output()) {
     warning("The question engine isn't support in output formats other than pdf.")
     return()
   }
 
   tibble::tibble(lines = options$code) %>%
     tidyr::extract(
-      lines, into = c("code", "arg", "content"),
+      lines,
+      into = c("code", "arg", "content"),
       regex = r"(([^|]*)\|?([^|]*)?\|?(.*))"
     ) %>%
     dplyr::mutate(dplyr::across(.fns = ~ dplyr::na_if(.x, y = ""))) %>%
@@ -254,28 +271,28 @@ eng_exam_questions <- function(options) {
         .f = function(code, arg, content) {
           arg <- ifelse(is.na(arg), " ", paste0("[", arg, "] "))
           dplyr::case_when(
-            code == "bq"  ~ paste0(knitr::raw_latex(r"(\begin{questions})")),
-            code == "rq"  ~ paste0(knitr::raw_latex(r"(\begin{questions}\setcounter{question}{\qstcounter})")),
-            code == "eq"  ~ paste0(knitr::raw_latex(r"(\xdef\qstcounter{\arabic{question}}\end{questions})")),
-
-            code == "ql"  ~ paste0(knitr::raw_latex(paste0(r"(\question)", arg, content))),
-            code == "qm"  ~ paste0(knitr::raw_latex(paste0(r"(\question)", arg)),
-                                   knitr:::pandoc_fragment(content)),
-
-            code == "bp"  ~ paste0(knitr::raw_latex(r"(\begin{parts})")),
-            code == "ep"  ~ paste0(knitr::raw_latex(r"(\end{parts})")),
-            code == "pl"  ~ paste0(knitr::raw_latex(paste0(r"(\part)", arg, content))),
-            code == "pm"  ~ paste0(knitr::raw_latex(paste0(r"(\part)", arg)),
-                                   knitr:::pandoc_fragment(content)),
-
-            code == "bs"  ~ paste0(knitr::raw_latex(paste0(r"(\begin{solutionorlines})", arg))),
-            code == "es"  ~ paste0(knitr::raw_latex(paste0(r"(\end{solutionorlines})", arg))),
-            code == "bb"  ~ paste0(knitr::raw_latex(paste0(r"(\begin{solutionorbox})", arg))),
-            code == "eb"  ~ paste0(knitr::raw_latex(paste0(r"(\end{solutionorbox})", arg))),
-
-            code == "np"  ~ paste0(knitr::raw_latex(r"(\clearpage)")),
-            code == "rl"  ~ paste0(knitr::raw_latex(content)),
-            code == "rm"  ~ paste0(knitr:::pandoc_fragment(content))
+            code == "bq" ~ paste0(knitr::raw_latex(r"(\begin{questions})")),
+            code == "rq" ~ paste0(knitr::raw_latex(r"(\begin{questions}\setcounter{question}{\qstcounter})")),
+            code == "eq" ~ paste0(knitr::raw_latex(r"(\xdef\qstcounter{\arabic{question}}\end{questions})")),
+            code == "ql" ~ paste0(knitr::raw_latex(paste0(r"(\question)", arg, content))),
+            code == "qm" ~ paste0(
+              knitr::raw_latex(paste0(r"(\question)", arg)),
+              knitr:::pandoc_fragment(content)
+            ),
+            code == "bp" ~ paste0(knitr::raw_latex(r"(\begin{parts})")),
+            code == "ep" ~ paste0(knitr::raw_latex(r"(\end{parts})")),
+            code == "pl" ~ paste0(knitr::raw_latex(paste0(r"(\part)", arg, content))),
+            code == "pm" ~ paste0(
+              knitr::raw_latex(paste0(r"(\part)", arg)),
+              knitr:::pandoc_fragment(content)
+            ),
+            code == "bs" ~ paste0(knitr::raw_latex(paste0(r"(\begin{solutionorlines})", arg))),
+            code == "es" ~ paste0(knitr::raw_latex(paste0(r"(\end{solutionorlines})", arg))),
+            code == "bb" ~ paste0(knitr::raw_latex(paste0(r"(\begin{solutionorbox})", arg))),
+            code == "eb" ~ paste0(knitr::raw_latex(paste0(r"(\end{solutionorbox})", arg))),
+            code == "np" ~ paste0(knitr::raw_latex(r"(\clearpage)")),
+            code == "rl" ~ paste0(knitr::raw_latex(content)),
+            code == "rm" ~ paste0(knitr:::pandoc_fragment(content))
           )
         }
       )
@@ -306,5 +323,6 @@ eng_legal_list <- function(options) {
       (options$code)
     \end{paralist}
   ]",
-  .open = "(", .close = ")") %>% knitr::raw_latex()
+    .open = "(", .close = ")"
+  ) %>% knitr::raw_latex()
 }

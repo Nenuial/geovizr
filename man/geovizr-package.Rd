@@ -4,11 +4,19 @@
 \name{geovizr-package}
 \alias{geovizr}
 \alias{geovizr-package}
-\title{geovizr: Provide Support for Knitr (Quarto/Rmd)}
+\title{geovizr: Support for Knitr (Quarto/Rmd)}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Provide support functions for the Quarto and Rmd documents.
+Provide support functions for Quarto and Rmd documents.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://geovizr.nenuial.org}
+  \item Report bugs at \url{http://github.com/nenuial/geovizr/issues/}
+}
+
 }
 \author{
 \strong{Maintainer}: Pascal Burkhard \email{pascal.burkhard@gmail.com} (\href{https://orcid.org/0009-0001-5504-5084}{ORCID})

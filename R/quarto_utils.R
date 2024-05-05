@@ -15,11 +15,11 @@
 #' readr::read_csv("data_file.csv") |>
 #'   gvz_render_multiple("template.qmd", "./")
 #'
-gvz_render_multiple <- function(data, template, output_dir, merge = F) {
+gvz_render_multiple <- function(data, template, output_dir, merge = FALSE) {
   data |>
     purrr::pmap(\(...) gvz_walk_multiple(template, output_dir, ...)) -> files
 
-  if(merge) {
+  if (merge) {
     pdftools::pdf_combine(files, output = fs::path(output_dir, merge, ext = "pdf"))
   }
 }
@@ -37,7 +37,9 @@ gvz_walk_multiple <- function(template, output_dir, ...) {
   data |>
     purrr::imap(
       \(x, y) rmarkdown::pandoc_metadata_arg(y, x)
-    ) |> unname() |> unlist() -> metadata
+    ) |>
+    unname() |>
+    unlist() -> metadata
 
   quarto::quarto_render(
     input = template,
@@ -58,5 +60,5 @@ gvz_walk_multiple <- function(template, output_dir, ...) {
 #' gvz_quarto_setup()
 #'
 gvz_quarto_setup <- function() {
-  knitr::opts_chunk$set(dev.args = c(bg = 'transparent'))
+  knitr::opts_chunk$set(dev.args = c(bg = "transparent"))
 }
