@@ -1,17 +1,14 @@
-Package: geovizr
 Type: Package
+Package: geovizr
 Title: Support for Knitr (Quarto/Rmd)
 Version: 1.0.0
 Authors@R: 
     person("Pascal", "Burkhard", , "pascal.burkhard@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0001-5504-5084"))
 Description: Provide support functions for Quarto and Rmd documents.
+License: MIT + file LICENSE
 URL: https://geovizr.nenuial.org
 BugReports: http://github.com/nenuial/geovizr/issues/
-License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.3.1
 Imports: 
     bookdown,
     chunkhooks,
@@ -25,18 +22,18 @@ Imports:
     here,
     janitor,
     knitr,
+    lifecycle,
+    magrittr,
     pdftools,
     purrr,
     quarto,
-    lifecycle,
-    magrittr,
-    tibble,
-    tidyr,
     readr,
     rlang,
     rmarkdown,
     rnotion,
     stringr,
+    tibble,
+    tidyr,
     xfun,
     yaml
 Suggests:
@@ -48,9 +45,12 @@ Suggests:
     tinytex,
     tufte
 Remotes:
-    Nenuial/ggeo,
     Nenuial/geodata,
     Nenuial/geotools,
+    Nenuial/ggeo,
     Nenuial/rnotion
-Roxygen: list(markdown = TRUE)
 Config/Needs/website: nenuial/geopkg
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
