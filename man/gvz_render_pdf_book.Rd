@@ -11,8 +11,8 @@ gvz_render_pdf_book(..., template_path, metadata)
   Arguments passed on to \code{\link[bookdown:pdf_book]{bookdown::pdf_book}}
   \describe{
     \item{\code{toc,number_sections,fig_caption,pandoc_args}}{See
-\code{rmarkdown::\link{pdf_document}}, or the documentation of the
-\code{base_format} function.}
+\code{rmarkdown::\link[rmarkdown]{pdf_document}}, or the documentation of
+the \code{base_format} function.}
     \item{\code{base_format}}{An output format function to be used as the base format.}
     \item{\code{toc_unnumbered}}{Whether to add unnumbered headers to the table of
 contents.}
