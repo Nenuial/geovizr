@@ -343,24 +343,3 @@ latex_percent_size <- function(x, which = c("width", "height"),
 tikz <- function() {
   gvz_file("rstudio/templates/project/resources/tex/tikz.tex")
 }
-
-#' Set chapter image in LaTeX book
-#'
-#' @param path The path to the image to use
-#'
-#' @export
-#' @examplesIf interactive()
-#' # Not run: use in Rmd book project
-#' chapter_image("path/to/chapter/image.png")
-#'
-chapter_image <- function(path) {
-  if (!knitr::is_latex_output()) {
-    return()
-  }
-
-  knitr::raw_latex(paste0(
-    r"(\chapterimage{)",
-    path,
-    "}"
-  ))
-}

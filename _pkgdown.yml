@@ -77,13 +77,6 @@ reference:
   - eng_legal_list
   - eng_wrap_figure
 
-- title: Format helper functions
-  description: |
-    Functions that format specific items.
-  contents:
-  - gvz_cosmo_solar_system_object
-  - chapter_image
-
 - title: Plot themes
   description: |
     These functions help format plots for final documents.
