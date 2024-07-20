@@ -2,7 +2,6 @@
 
 export("%>%")
 export(book_skeleton)
-export(chapter_image)
 export(eng_center_text)
 export(eng_classic_box)
 export(eng_document_ref)
