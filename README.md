@@ -3,6 +3,7 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/Nenuial/geovizr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Nenuial/geovizr/actions/workflows/R-CMD-check.yaml)
 [![geovizr status badge](https://nenuial.r-universe.dev/badges/geovizr)](https://nenuial.r-universe.dev/geovizr)
+[![DOI](https://zenodo.org/badge/743253415.svg)](https://zenodo.org/doi/10.5281/zenodo.12790294)
 <!-- badges: end -->
 
 The goal of geovizr is to provide support functions to create documents using [Quarto](https://quarto.org) or [RMarkdown](http://rmarkdown.rstudio.com/index.html).
