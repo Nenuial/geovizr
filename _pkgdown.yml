@@ -23,7 +23,7 @@ reference:
   description: |
     These function are here to help with Quarto projects.
   contents:
-  - gvz_quarto_setup
+  - starts_with("gvz_quarto")
   - gvz_render_multiple
 
 - title: RMarkdown formats
