@@ -62,3 +62,49 @@ gvz_walk_multiple <- function(template, output_dir, ...) {
 gvz_quarto_setup <- function() {
   knitr::opts_chunk$set(dev.args = c(bg = "transparent"))
 }
+
+
+#' Make a simple yaml file for all presentations
+#'
+#' @returns NULL
+#' @export
+#'
+#' @examplesIf interactive()
+#' # Not run: only work in quarto projects
+#'
+#' gvz_quarto_make_presentation_yaml()
+#'
+gvz_quarto_make_presentation_yaml <- function() {
+  get_title <- function(path) {
+    title <- rmarkdown::yaml_front_matter(path)$title
+    url <- fs::path(fs::path_ext_remove(path), ext = "html")
+    tibble::tibble(url = url, title = title)
+  }
+
+  fs::dir_ls(".", recurse = TRUE, regexp = "\\d{1,2}-.*?/index.qmd") |>
+    purrr::map(get_title) |>
+    purrr::list_rbind() |>
+    jsonlite::toJSON() |>
+    jsonlite::parse_json() |>
+    yaml::as.yaml() |>
+    readr::write_file("presentations.yml")
+}
+
+#' Gets presentation yaml file from GeoKey
+#'
+#' @param path Path where the yaml file gets downloaded to
+#' @param prefix Prefix for the path on GeoKey
+#'
+#' @returns NULL
+#' @export
+#'
+#' @examplesIf interactive()
+#' # Not run: only work in quarto projects
+#'
+#' gvz_quarto_get_presentation_yaml("Presentations/", "DF")
+gvz_quarto_get_presentation_yaml <- function(path, prefix) {
+  download.file(
+    paste0("http://key.geoviews.ch/", prefix, "-", path, "/presentations.yml"),
+    paste0(path, "/Presentations/presentations.yml")
+  )
+}
