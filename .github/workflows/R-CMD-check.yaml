@@ -29,6 +29,10 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
 
     steps:
+      - name: Install libpoppler
+        if: runner.os == 'Linux'
+        run: sudo apt-get install -y libpoppler-cpp-dev
+
       - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2
