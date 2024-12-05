@@ -48,6 +48,7 @@ reference:
   - gvz_book_resources
   - gvz_global_opts_chunk
   - gvz_html_or_pdf
+  - gvz_knit_child
   - gvz_knit_child_matu_oraux
   - gvz_latex_table
   - gvz_md_to_latex
