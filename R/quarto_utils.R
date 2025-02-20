@@ -47,7 +47,7 @@ gvz_walk_multiple <- function(template, output_dir, ...) {
     pandoc_args = metadata
   )
 
-  return(fs::file_move(paste0(data$`file`, ".pdf"), output_dir))
+  fs::file_move(paste0(data$`file`, ".pdf"), output_dir)
 }
 
 #' Quarto chunk options setup

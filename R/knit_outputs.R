@@ -177,7 +177,7 @@ gvz_letter_standard <- function(..., metadata = c()) {
     pandoc_args = metadata
   )
 
-  return(base)
+  base
 }
 
 #' Rmarkdown pdf document
@@ -191,7 +191,7 @@ inherit_pdf_document <- function(...) {
   fmt <- rmarkdown::pdf_document(...)
   fmt$inherits <- "pdf_document"
 
-  return(fmt)
+  fmt
 }
 
 #' Examen matu LDDR
@@ -308,5 +308,5 @@ gvz_metadata <- function(path) {
     rmarkdown::pandoc_metadata_arg(name = "csquotes")
   ) -> metadata
 
-  return(metadata)
+  metadata
 }

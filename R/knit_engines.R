@@ -161,37 +161,35 @@ eng_document_ref <- function(options) {
     ) %>%
       knitr::raw_latex()
 
-    return(output)
+    output
   } else if (options$type == "book") {
     output <- glue::glue(r"[\AlBook{(options$code)}{(options$author)}]",
       .open = "(", .close = ")"
     ) %>%
       knitr::raw_latex()
 
-    return(output)
+    output
   } else if (options$type == "press") {
     output <- glue::glue(r"[\AlPress{(options$code)}{(options$author)}]",
       .open = "(", .close = ")"
     ) %>%
       knitr::raw_latex()
 
-    return(output)
+    output
   } else if (options$type == "page") {
     output <- glue::glue(r"[\AlPage[(options$author)]{(options$code)}{(options$date)}]",
       .open = "(", .close = ")"
     ) %>%
       knitr::raw_latex()
 
-    return(output)
+    output
   } else if (options$type == "interview") {
     output <- glue::glue(r"[\AlInterview{(options$code)}{(options$author)}{(options$inteviewer)}]",
       .open = "(", .close = ")"
     ) %>%
       knitr::raw_latex()
 
-    return(output)
-  } else {
-    return()
+    output
   }
 }
 
@@ -297,7 +295,7 @@ eng_image_legend <- function(options) {
     latex_return <- paste0(leg, "\n", img) %>% knitr::raw_latex()
   }
 
-  return(latex_return)
+  latex_return
 }
 
 # Examdoc -----------------------------------------------------------------
