@@ -7,6 +7,8 @@
 gvz_knit_child(input, ...)
 }
 \arguments{
+\item{input}{Input file}
+
 \item{...}{Data that is passed to the fragment
 Must have \emph{ID}, \emph{Name}, \emph{Subject} and \emph{Question}}
 }

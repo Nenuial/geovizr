@@ -2,6 +2,8 @@
   # Load engines ------------------------------------------------------------
   # General purpose
   knitr::knit_engines$set(latex = eng_latex_raw)
+  # TikZ
+  knitr::knit_engines$set(xetikz = eng_xetikz)
   # Formatting
   knitr::knit_engines$set(center = eng_center_text)
   # Boxes

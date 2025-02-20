@@ -6,12 +6,13 @@
 #' This function should be used in a Quarto document inside
 #' a code chunk with the `asis` option.
 #'
+#' @param input Input file
 #' @param ... Data that is passed to the fragment
 #'   Must have *ID*, *Name*, *Subject* and *Question*
 #'
 #' @return NULL
 #' @export
-gvz_knit_child <- function (input, ...) {
+gvz_knit_child <- function(input, ...) {
   out <- rlang::list2(...)
   data <- tibble::tibble(!!!out)
 

@@ -25,10 +25,8 @@ gvz_global_opts_chunk <- function() {
       dev = if (knitr::is_latex_output()) "cairo_pdf" else "png"
     ),
     geo.tikz = list(
-      echo = FALSE, out.width = "100%",
-      fig.retina = 2,
-      fig.ext = if (knitr::is_latex_output()) "pdf" else "png",
-      engine = "tikz",
+      echo = FALSE,
+      engine = "xetikz",
       engine.opts = list(
         template = geovizr::tikz(),
         classoption = geotools::gtl_opt_long_language(),
