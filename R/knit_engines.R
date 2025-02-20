@@ -15,6 +15,71 @@ eng_latex_raw <- function(options) {
 }
 
 
+# Tikz --------------------------------------------------------------------
+
+eng_xetikz <- function(options) {
+  if (!options$eval) {
+    return(engine_output(options, options$code, ""))
+  }
+
+  lines <- xfun::read_utf8(
+    options$engine.opts$template %||% system.file("misc", "tikz2pdf.tex", package = "knitr")
+  )
+  # add class options to template
+  lines <- insert_template(
+    lines, "%% TIKZ_CLASSOPTION %%", options$engine.opts$classoption %||% "tikz", TRUE
+  )
+  # insert code into preamble
+  lines <- insert_template(
+    lines, "%% EXTRA_TIKZ_PREAMBLE_CODE %%", options$engine.opts$extra.preamble, TRUE
+  )
+  # insert tikz code into the tex template
+  s <- insert_template(lines, "%% TIKZ_CODE %%", options$code)
+  xfun::write_utf8(s, texf <- wd_tempfile("tikz", ".tex"))
+  on.exit(unlink(texf), add = TRUE)
+
+  ext <- dev2ext(options)
+
+  to_svg <- ext == "svg"
+  outf <- if (to_svg) tinytex::latexmk(texf, "latex") else tinytex::latexmk(texf)
+
+  fig <- knitr::fig_path(if (to_svg) ".dvi" else ".pdf", options)
+  dir.create(dirname(fig), recursive = TRUE, showWarnings = FALSE)
+  file.rename(outf, fig)
+
+  fig2 <- xfun::with_ext(fig, ext)
+  if (to_svg) {
+    # dvisvgm needs to be on the path
+    # dvisvgm for windows needs ghostscript bin dir on the path also
+    if (Sys.which("dvisvgm") == "") tinytex::tlmgr_install("dvisvgm")
+    if (system2("dvisvgm", c(
+      options$engine.opts$dvisvgm.opts, "-o", shQuote(fig2), fig
+    )) != 0) {
+      stop("Failed to compile ", fig, " to ", fig2)
+    }
+  } else {
+    # convert to the desired output-format using magick
+    if (ext != "pdf") {
+      magick::image_write(do.call(magick::image_convert, c(
+        list(magick::image_read_pdf(fig), ext), options$engine.opts$convert.opts
+      )), fig2)
+    }
+    if (options$transparency %||% FALSE) {
+      magick::image_read(fig2) |>
+        magick::image_transparent("white", fuzz = 0) |>
+        magick::image_write(fig2)
+    }
+  }
+  fig <- fig2
+
+  options$fig.num <- 1L
+  options$fig.cur <- 1L
+  extra <- run_hook_plot(fig, options)
+  knitr::engine_output(options, options$code, "", extra)
+}
+
+
+
 # Formatting --------------------------------------------------------------
 
 #' Center text with width option
@@ -326,3 +391,60 @@ eng_legal_list <- function(options) {
     .open = "(", .close = ")"
   ) %>% knitr::raw_latex()
 }
+
+
+# Internal functions -----------------------------------------------------
+
+insert_template <- function(text, token, value, ignore = FALSE) {
+  if (is.null(value)) {
+    return(text)
+  }
+  i <- grep(token, text)
+  n <- length(i)
+  if (n > 1) stop("There are multiple tokens in the template: '", token, "'")
+  if (n == 0) {
+    if (ignore) {
+      return(text)
+    }
+    stop("Couldn't find the token '", token, "' in the template.")
+  }
+  append(text, value, i)
+}
+
+wd_tempfile <- function(...) basename(tempfile(tmpdir = ".", ...))
+
+dev2ext <- function(options) {
+  if (length(ext <- options$fig.ext)) {
+    return(ext)
+  }
+  x <- options$dev
+  res <- auto_exts[x]
+  if (any(idx <- is.na(res))) {
+    for (i in x[idx]) dev_get(i)
+    stop(
+      "cannot find appropriate filename extensions for device ", x[idx], "; ",
+      "please use chunk option 'fig.ext' (https://yihui.org/knitr/options/)"
+    )
+  }
+  unname(res)
+}
+
+run_hook_plot <- function(x, options) {
+  knitr::opts_knit$append(plot_files = x)
+  hook <- knitr::knit_hooks$get("plot")
+  hook(x, options)
+}
+
+auto_exts <- c(
+  bmp = "bmp", postscript = "eps", pdf = "pdf", png = "png", svg = "svg",
+  jpeg = "jpeg", pictex = "tex", tiff = "tiff", win.metafile = "wmf",
+  cairo_pdf = "pdf", cairo_ps = "eps",
+  quartz_pdf = "pdf", quartz_png = "png", quartz_jpeg = "jpeg",
+  quartz_tiff = "tiff", quartz_gif = "gif", quartz_psd = "psd",
+  quartz_bmp = "bmp",
+  CairoJPEG = "jpeg", CairoPNG = "png", CairoPS = "eps", CairoPDF = "pdf",
+  CairoSVG = "svg", CairoTIFF = "tiff",
+  svglite = "svg", gridSVG = "svg",
+  ragg_png = "png",
+  tikz = "tex"
+)
