@@ -79,7 +79,6 @@ eng_xetikz <- function(options) {
 }
 
 
-
 # Formatting --------------------------------------------------------------
 
 #' Center text with width option
