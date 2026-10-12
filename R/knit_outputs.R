@@ -289,12 +289,12 @@ gvz_metadata <- function(path) {
   metadata <- c()
 
   if (fs::file_exists(here::here("_document.yaml"))) {
-    yaml::read_yaml(here::here("_document.yaml")) %>%
+    yaml::read_yaml(here::here("_document.yaml")) |>
       purrr::imap(~ rmarkdown::pandoc_metadata_arg(
         name = .y,
         value = .x
-      )) %>%
-      purrr::as_vector() %>%
+      )) |>
+      purrr::as_vector() |>
       unname() -> metadata
   }
 
