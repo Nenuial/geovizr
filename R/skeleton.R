@@ -14,12 +14,12 @@ book_skeleton <- function(path) {
   # copy 'resources' folder to path
   resources <- gvz_file("rstudio", "templates", "project", "skeleton")
 
-  fs::dir_ls(resources, type = "directory") %>%
+  fs::dir_ls(resources, type = "directory") |>
     purrr::walk(
       .f = ~ fs::dir_copy(path = .x, new_path = path)
     )
 
-  fs::dir_ls(resources, type = "file") %>%
+  fs::dir_ls(resources, type = "file") |>
     purrr::walk(
       .f = ~ fs::dir_copy(path = .x, new_path = path)
     )

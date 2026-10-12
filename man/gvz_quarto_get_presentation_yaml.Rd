@@ -15,7 +15,7 @@ gvz_quarto_get_presentation_yaml(path, prefix)
 Gets presentation yaml file from GeoKey
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: only work in quarto projects
 
 gvz_quarto_get_presentation_yaml("Presentations/", "DF")

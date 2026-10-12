@@ -109,7 +109,7 @@ gvz_ski <- function(..., metadata = c()) {
 
 #' LDDR pdf letter
 #'
-#' @inheritDotParams gvz_letter_standard
+#' @inheritDotParams rmarkdown::pdf_document
 #' @param metadata Additional pandoc metadata
 #'
 #' @export
@@ -147,7 +147,7 @@ gvz_letter <- function(..., metadata = c()) {
 
 #' Standard pdf letter
 #'
-#' @inheritDotParams inherit_pdf_document
+#' @inheritDotParams rmarkdown::pdf_document
 #' @param metadata Additional pandoc metadata
 #'
 #' @keywords internal
@@ -289,12 +289,12 @@ gvz_metadata <- function(path) {
   metadata <- c()
 
   if (fs::file_exists(here::here("_document.yaml"))) {
-    yaml::read_yaml(here::here("_document.yaml")) %>%
+    yaml::read_yaml(here::here("_document.yaml")) |>
       purrr::imap(~ rmarkdown::pandoc_metadata_arg(
         name = .y,
         value = .x
-      )) %>%
-      purrr::as_vector() %>%
+      )) |>
+      purrr::as_vector() |>
       unname() -> metadata
   }
 

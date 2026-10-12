@@ -18,7 +18,7 @@ A collapsed string to use \code{asis}
 Generate latex code for table from tibble
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: use in Rmd/Quarto document
 table |>
   gvz_latex_table()

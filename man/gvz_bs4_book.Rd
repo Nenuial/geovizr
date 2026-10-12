@@ -17,7 +17,7 @@ against the background.}
     \item{\code{repo}}{Either link to repository where book is hosted, used to generate
 view source and edit buttons or a list with repository \code{base} link, default
 \code{branch}, \code{subdir} and \code{icon}
-(see "Specifying the repository" in \url{https://bookdown.org/yihui/bookdown/html.html#bootstrap4-style}).}
+(see "Specifying the repository" in \url{https://pkg.yihui.org/bookdown/html.html#bootstrap4-style}).}
     \item{\code{template}}{Pandoc template to use for rendering. Pass \code{"default"} to use
 the bookdown default template; pass a path to use a custom template. The
 default template should be sufficient for most use cases. For advanced user
@@ -28,13 +28,16 @@ Otherwise, some feature may not work anymore.}
     \item{\code{footnotes_inline}}{By default, footnotes will be set inline and shown on
 hover. Set to \code{FALSE} to keep footnotes at the bottom of the page with
 links.}
+    \item{\code{primary}}{Primary colour: used for links and background of footer.}
+    \item{\code{version}}{Passed to \code{\link[bslib:bs_theme]{bslib::bs_theme()}}. This should not be changed as
+\code{\link[bookdown:bs4_book]{bs4_book()}} has been designed to work with Bootstrap version 4 for now.}
   }}
 }
 \description{
 Book website
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: should be used as Rmd format in yaml frontmatter
 #
 # format: geovizir::gvz_bs4_book

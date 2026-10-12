@@ -8,7 +8,7 @@ gvz_book(..., metadata = c())
 }
 \arguments{
 \item{...}{
-  Arguments passed on to \code{\link[=gvz_render_pdf_book]{gvz_render_pdf_book}}
+  Arguments passed on to \code{\link{gvz_render_pdf_book}}
   \describe{
     \item{\code{template_path}}{Path of the latex template}
   }}
@@ -19,7 +19,7 @@ gvz_book(..., metadata = c())
 Book pdf
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: should be used as Rmd format in yaml frontmatter
 #
 # format: geovizir::gvz_book

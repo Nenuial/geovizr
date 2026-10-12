@@ -186,7 +186,7 @@ knit_quiet <- function(input, ...) {
   yaml <- rmarkdown::yaml_front_matter(input)
 
   if (!is.null(yaml$subfile)) {
-    yaml$subfile %>%
+    yaml$subfile |>
       purrr::iwalk(
         .f = ~ knit_subfile(input = input, output = yaml[["output"]], key = .y, value = .x)
       )
@@ -211,12 +211,12 @@ knit_letters <- function(input, ...) {
   if (length(yaml[["recipients"]]) == 0) stop("No letter recipients defined")
 
   render_letter <- function(recipient = .x, input) {
-    recipient %>%
+    recipient |>
       purrr::imap(~ rmarkdown::pandoc_metadata_arg(
         name = .y,
         value = .x
-      )) %>%
-      purrr::as_vector() %>%
+      )) |>
+      purrr::as_vector() |>
       unname() -> metadata
 
     rmarkdown::render(
@@ -234,7 +234,7 @@ knit_letters <- function(input, ...) {
     )
   }
 
-  yaml[["recipients"]] %>%
+  yaml[["recipients"]] |>
     purrr::walk(~ render_letter(recipient = .x, input = input))
 
   knit_cleanup(input)
@@ -275,8 +275,8 @@ knit_subfile <- function(input, output, key, value) {
 #'
 #' @keywords internal
 knit_cleanup <- function(input) {
-  fs::path_dir(path = input) %>%
-    fs::dir_ls(regexp = "[.](log|ent|tns)") %>%
+  fs::path_dir(path = input) |>
+    fs::dir_ls(regexp = "[.](log|ent|tns)") |>
     fs::file_delete()
 }
 
@@ -290,7 +290,7 @@ knit_cleanup <- function(input) {
 #' knit_all()
 #'
 knit_all <- function(path = here::here()) {
-  fs::dir_ls(path = path, recurse = TRUE, regexp = ".*\\.Rmd") %>%
+  fs::dir_ls(path = path, recurse = TRUE, regexp = ".*\\.Rmd") |>
     purrr::walk(~ geovizr::knit_quiet(.x, encoding = "UTF-8"))
 }
 

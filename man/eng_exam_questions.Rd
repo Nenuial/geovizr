@@ -14,7 +14,7 @@ eng_exam_questions(options)
 Use quarto extension with solution filter.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: knitr engine for Rmd/Quarto documents
 eng_exam_questions(code = "Some text")
 \dontshow{\}) # examplesIf}
