@@ -8,9 +8,21 @@ gvz_render_pdf_document(..., template_path, metadata)
 }
 \arguments{
 \item{...}{
-  Arguments passed on to \code{\link[bookdown:html_document2]{bookdown::pdf_document2}}
+  Arguments passed on to \code{\link[bookdown:pdf_document2]{bookdown::pdf_document2}}
   \describe{
-    \item{\code{}}{}
+    \item{\code{number_sections}}{Whether to number section headers: if \code{TRUE},
+figure/table numbers will be of the form \code{X.i}, where \code{X} is the
+current first-level section number, and \code{i} is an incremental number
+(the i-th figure/table); if \code{FALSE}, figures/tables will be numbered
+sequentially in the document from 1, 2, ..., and you cannot cross-reference
+section headers in this case.}
+    \item{\code{global_numbering}}{If \code{TRUE}, number figures and tables globally
+throughout a document (e.g., Figure 1, Figure 2, ...). If \code{FALSE},
+number them sequentially within sections (e.g., Figure 1.1, Figure 1.2,
+..., Figure 5.1, Figure 5.2, ...). Note that \code{global_numbering =
+FALSE} will not work with \code{number_sections = FALSE} because sections
+are not numbered.}
+    \item{\code{base_format}}{An output format function to be used as the base format.}
   }}
 
 \item{template_path}{Path of the latex template}

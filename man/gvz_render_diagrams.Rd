@@ -15,7 +15,7 @@ gvz_render_diagrams(source, out)
 Render all tikz diagram in PDF format
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: needs a file with tikz chunks
 gvz_render_diagrams("file.Rmd", "out/directory/")
 \dontshow{\}) # examplesIf}

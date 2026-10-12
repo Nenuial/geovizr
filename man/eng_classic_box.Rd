@@ -13,7 +13,7 @@ eng_classic_box(options)
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: knitr engine for Rmd/Quarto documents
 eng_classic_box(list(code = "Some text"))
 \dontshow{\}) # examplesIf}

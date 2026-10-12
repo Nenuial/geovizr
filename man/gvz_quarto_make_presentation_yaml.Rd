@@ -10,7 +10,7 @@ gvz_quarto_make_presentation_yaml()
 Make a simple yaml file for all presentations
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: only work in quarto projects
 
 gvz_quarto_make_presentation_yaml()

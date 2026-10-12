@@ -25,7 +25,7 @@ Generate pdf files
 Render multiple files
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Read a file containing the data used in the template
 readr::read_csv("data_file.csv") |>
   gvz_render_multiple("template.qmd", "./")

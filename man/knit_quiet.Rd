@@ -15,7 +15,7 @@ knit_quiet(input, ...)
 Custom Knit function for RStudio
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: this function is for use in Rmd yaml frontmatter
 #
 # knit: geovizir::knit_quiet

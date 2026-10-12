@@ -18,7 +18,7 @@ The selected output
 Select output depending on format
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 # Not run: for use in Rmd/Quarto documents
 gvz_html_or_pdf("The <b>HTML</b> output", "The \\\\textbf{LaTex} output")
 \dontshow{\}) # examplesIf}

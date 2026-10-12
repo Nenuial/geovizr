@@ -109,7 +109,7 @@ gvz_ski <- function(..., metadata = c()) {
 
 #' LDDR pdf letter
 #'
-#' @inheritDotParams gvz_letter_standard
+#' @inheritDotParams rmarkdown::pdf_document
 #' @param metadata Additional pandoc metadata
 #'
 #' @export
@@ -147,7 +147,7 @@ gvz_letter <- function(..., metadata = c()) {
 
 #' Standard pdf letter
 #'
-#' @inheritDotParams inherit_pdf_document
+#' @inheritDotParams rmarkdown::pdf_document
 #' @param metadata Additional pandoc metadata
 #'
 #' @keywords internal
